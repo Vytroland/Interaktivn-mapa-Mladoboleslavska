@@ -1,9 +1,9 @@
 const locations = {
-    "mnichovo": { title: "Mnichovo Hradiště", badge: "Zámek", desc: "Barokní zámek spojený s rodem Valdštejnů a Casanovou.", img: "img/mnichovo.jpg" },
-    "bela": { title: "Bělá pod Bezdězem", badge: "Zámek", desc: "Zámek na kraji hlubokých lesů s papírenskou tradicí.", img: "img/bela.jpg" },
-    "michalovice": { title: "Michalovice", badge: "Zřícenina", desc: "Hrad se šikmou věží Putna.", img: "img/michalovice.jpg" },
-    "loucen": { title: "Zámek Loučeň", badge: "Zábava", desc: "Zámek s unikátním labyrintáriem v parku.", img: "img/loucen.jpg" },
-    "benatky": { title: "Benátky nad Jizerou", badge: "Věda", desc: "Zámek, kde působil astronom Tycho Brahe.", img: "img/benatky.jpg" }
+    "mnichovo": { title: "Zámek Mnichovo Hradiště", badge: "Zámek", desc: "Barokní perla spojená s Valdštejny.", img: "Minchovo.jpg" },
+    "bela": { title: "Zámek Bělá p. B.", badge: "Zámek", desc: "Historický zámek s expozicí papírenství.", img: "bela.jpg" },
+    "michalovice": { title: "Zřícenina Michalovice", badge: "Zřícenina", desc: "Hrad se slavnou šikmou věží Putna.", img: "Putna.jpg" },
+    "loucen": { title: "Zámek Loučeň", badge: "Zámek", desc: "Zámek proslulý svými labyrinty a bludišti.", img: "Loucen.jpg" },
+    "benatky": { title: "Benátky n. Jizerou", badge: "Zámek", desc: "Zámek, kde působil Tycho Brahe.", img: "Benatky.jpg" } // Doplň si název obrázku pro Benátky
 };
 
 function hidePanels() {
@@ -17,15 +17,18 @@ document.querySelectorAll('.map-point').forEach(point => {
         hidePanels();
 
         if (id === "boleslav") {
-            // Speciální zobrazení pro Boleslav
             document.getElementById('double-panel').style.display = 'grid';
         } else {
-            // Standardní zobrazení pro ostatní
             const data = locations[id];
             if (data) {
                 document.getElementById('p-title').innerText = data.title;
                 document.getElementById('p-badge').innerText = data.badge;
                 document.getElementById('p-desc').innerText = data.desc;
+                const imgElement = document.getElementById('p-img');
+                if (data.img) {
+                    imgElement.src = data.img;
+                    imgElement.style.display = 'block';
+                }
                 document.getElementById('info-panel').style.display = 'block';
             }
         }
