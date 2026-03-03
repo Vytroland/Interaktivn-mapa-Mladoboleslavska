@@ -3,88 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Průvodce Mladoboleslavskem</title>
-    <link rel="stylesheet" href="style.css?v=2026">
+    <title>Mapa Mladoboleslavska</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="top-header">
-        <div class="panel"><h1>Průvodce Mladoboleslavskem</h1></div>
-        <div class="panel"><p>Klikněte na body na mapě!</p></div>
-    </header>
+    <h1>Průvodce Mladoboleslavskem</h1>
 
-    <div class="main-content">
-        <div class="white-box map-container">
-            <svg id="mapa-boleslav" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
-                <image href="Mapa.png" x="0" y="0" width="1000" height="1100" />
-                
-                <g class="map-point" data-id="mnichovo">
-                    <circle class="outer-ring" cx="560" cy="150" r="25" fill="#27ae60"/>
-                    <text x="560" y="210" class="point-label" text-anchor="middle">Mnichovo Hradiště</text>
-                </g>
-                <g class="map-point" data-id="drabske">
-                    <circle class="outer-ring" cx="680" cy="140" r="25" fill="#27ae60"/>
-                    <text x="680" y="200" class="point-label" text-anchor="middle">Drábské světničky</text>
-                </g>
-                <g class="map-point" data-id="bela-zamek">
-                    <circle class="outer-ring" cx="300" cy="300" r="25" fill="#27ae60"/>
-                    <text x="300" y="360" class="point-label" text-anchor="middle">Zámek Bělá</text>
-                </g>
-                <g class="map-point" data-id="muzeum">
-                    <circle class="outer-ring" cx="530" cy="480" r="25" fill="#27ae60"/>
-                    <text x="530" y="540" class="point-label" text-anchor="middle">Škoda Muzeum</text>
-                </g>
-                <g class="map-point" data-id="michalovice">
-                    <circle class="outer-ring" cx="490" cy="510" r="25" fill="#27ae60"/>
-                    <text x="490" y="570" class="point-label" text-anchor="middle">Michalovice</text>
-                </g>
-                <g class="map-point" data-id="loucen">
-                    <circle class="outer-ring" cx="740" cy="670" r="25" fill="#27ae60"/>
-                    <text x="740" y="730" class="point-label" text-anchor="middle">Zámek Loučeň</text>
-                </g>
-                <g class="map-point" data-id="benatky-zamek">
-                    <circle class="outer-ring" cx="440" cy="790" r="25" fill="#27ae60"/>
-                    <text x="440" y="850" class="point-label" text-anchor="middle">Benátky n. J.</text>
-                </g>
-            </svg>
-        </div>
+    <div class="map-container">
+        <svg viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
+            <image href="Mapa.png" width="1000" height="1100" />
+            
+            <g class="map-point" data-id="mnichovo">
+                <circle class="outer-ring" cx="560" cy="150" r="25"/>
+                <text x="560" y="215" class="point-label" text-anchor="middle">Mnichovo Hradiště</text>
+            </g>
+            <g class="map-point" data-id="bela">
+                <circle class="outer-ring" cx="300" cy="300" r="25"/>
+                <text x="300" y="365" class="point-label" text-anchor="middle">Bělá p. Bezdězem</text>
+            </g>
+            <g class="map-point" data-id="boleslav">
+                <circle class="outer-ring" cx="530" cy="480" r="25"/>
+                <text x="530" y="545" class="point-label" text-anchor="middle">Mladá Boleslav</text>
+            </g>
+            <g class="map-point" data-id="michalovice">
+                <circle class="outer-ring" cx="490" cy="510" r="25"/>
+                <text x="490" y="575" class="point-label" text-anchor="middle">Michalovice</text>
+            </g>
+            <g class="map-point" data-id="loucen">
+                <circle class="outer-ring" cx="740" cy="670" r="25"/>
+                <text x="740" y="735" class="point-label" text-anchor="middle">Zámek Loučeň</text>
+            </g>
+            <g class="map-point" data-id="benatky">
+                <circle class="outer-ring" cx="440" cy="790" r="25"/>
+                <text x="440" y="855" class="point-label" text-anchor="middle">Benátky n. Jizerou</text>
+            </g>
+        </svg>
+    </div>
 
-        <div id="info-panel" class="white-box">
-            <h2 id="p-title">Vyberte místo</h2>
-            <img id="p-img" src="" style="display:none; width:100%; border-radius:15px; margin:15px 0;">
-            <p id="p-desc">Podrobnosti se zobrazí po kliknutí.</p>
-            <button class="close-btn" onclick="document.getElementById('info-panel').style.display='none'">Zavřít</button>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="m-title"></h2>
+            <img id="m-img" src="">
+            <button class="close-btn" id="closeModal">ZAVŘÍT</button>
         </div>
     </div>
 
-    <script>
-        const locations = {
-            "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní zámek rodiny Valdštejnů.", img: "Minchovo.jpg" },
-            "drabske": { title: "Drábské světničky", desc: "Skalní pevnost v Českém ráji.", img: "drabske.jpg" },
-            "bela-zamek": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek a muzeum.", img: "bela.jpg" },
-            "muzeum": { title: "Škoda Muzeum", desc: "Historie automobilů Škoda.", img: "muzeum.jpg" },
-            "michalovice": { title: "Zřícenina Michalovice", desc: "Hrad se šikmou věží Putna.", img: "Putna.jpg" },
-            "loucen": { title: "Zámek Loučeň", desc: "Zámek s labyrintáriem.", img: "Loucen.jpg" },
-            "benatky-zamek": { title: "Zámek Benátky n. Jizerou", desc: "Místo spojené s Tychonem Brahe.", img: "Benatky.jpg" }
-        };
-
-        document.querySelectorAll('.map-point').forEach(point => {
-            point.addEventListener('click', function() {
-                const id = this.getAttribute('data-id');
-                const data = locations[id];
-                if (data) {
-                    document.getElementById('p-title').innerText = data.title;
-                    document.getElementById('p-desc').innerText = data.desc;
-                    const img = document.getElementById('p-img');
-                    img.src = data.img;
-                    img.style.display = 'block';
-                    document.getElementById('info-panel').style.display = 'block';
-                }
-            });
-
-            point.addEventListener('mouseenter', function() {
-                this.parentNode.appendChild(this);
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
