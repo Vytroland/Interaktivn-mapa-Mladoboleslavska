@@ -1,15 +1,32 @@
-body { margin: 0; padding: 0; font-family: sans-serif; background: #2c3e50; display: flex; flex-direction: column; align-items: center; }
-.top-header { display: flex; gap: 20px; padding: 20px; }
-.panel { background: #2980b9; color: white; padding: 10px 25px; border-radius: 50px; }
-.main-content { display: flex; gap: 20px; width: 95%; max-width: 1200px; padding: 20px; }
-.white-box { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-.map-container { flex: 2; }
-#info-panel { flex: 1; display: none; max-width: 350px; }
+const locations = {
+    "mnichovo": { t: "Mnichovo Hradiště", i: "Minchovo.jpg" },
+    "bela": { t: "Bělá p. Bezdězem", i: "bela.jpg" },
+    "boleslav": { t: "Mladá Boleslav", i: "muzeum.jpg" },
+    "michalovice": { t: "Michalovice", i: "Putna.jpg" },
+    "loucen": { t: "Zámek Loučeň", i: "Loucen.jpg" },
+    "benatky": { t: "Benátky n. Jizerou", i: "Benatky.jpg" }
+};
 
-.point-label { opacity: 0; fill: #2c3e50; font-weight: bold; font-size: 16px; pointer-events: none; transition: 0.2s; }
-.map-point:hover .point-label { opacity: 1; }
-.outer-ring { transition: 0.3s; cursor: pointer; }
-.map-point:hover .outer-ring { fill: #e67e22; }
+const modal = document.getElementById('modal');
+const closeBtn = document.getElementById('closeModal');
 
-svg { width: 100%; height: auto; }
-.close-btn { width: 100%; padding: 10px; background: #2c3e50; color: white; border: none; border-radius: 10px; cursor: pointer; margin-top: 10px; }
+document.querySelectorAll('.map-point').forEach(point => {
+    point.addEventListener('click', function() {
+        const info = locations[this.getAttribute('data-id')];
+        if (info) {
+            document.getElementById('m-title').innerText = info.t;
+            document.getElementById('m-img').src = info.i;
+            modal.style.display = 'flex';
+        }
+    });
+
+    point.addEventListener('mouseenter', function() {
+        this.parentNode.appendChild(this);
+    });
+});
+
+closeBtn.onclick = () => { modal.style.display = 'none'; };
+
+window.onclick = (event) => {
+    if (event.target == modal) { modal.style.display = 'none'; }
+};
