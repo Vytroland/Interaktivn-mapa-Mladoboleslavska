@@ -1,16 +1,14 @@
-/* Základní nastavení */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #2c3e50; 
+    background-color: #2c3e50;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
 }
 
-/* Horní panely */
 .top-header {
     display: flex;
     gap: 20px;
@@ -27,25 +25,12 @@ body {
     text-align: center;
     flex: 1;
     max-width: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
 }
 
-.panel h1, .panel p { 
-    margin: 0; 
-    font-size: 1.1rem; 
-    font-weight: bold; 
-}
-
-/* HLAVNÍ GRID ROZVRŽENÍ */
 .main-content {
     display: grid;
-    /* Tři sloupce: pružný vlevo | pevná mapa (850px) | pružný vpravo pro info */
-    grid-template-columns: 1fr 850px 1fr; 
+    grid-template-columns: 1fr 850px 1fr;
     width: 100%;
-    max-width: 1800px;
     gap: 20px;
     padding: 20px;
     align-items: start;
@@ -58,42 +43,22 @@ body {
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
-/* Mapa je v prostředním sloupci (číslo 2) */
-.map-container {
-    grid-column: 2;
-    width: 850px;
-}
+.map-container { grid-column: 2; }
+.info-column { grid-column: 3; }
 
-/* Info panely jsou v pravém sloupci (číslo 3) */
 .info-overlay {
-    grid-column: 3;
     width: 380px;
-    display: none; /* Skryto, dokud se neklikne */
-}
-
-/* Dvojitý panel pro Boleslav v pravém sloupci */
-.double-layout {
     display: none;
-    flex-direction: column;
-    gap: 15px;
 }
 
-/* BODY A POPISKY */
-.outer-ring { 
-    fill: #27ae60; 
-    transition: fill 0.3s; 
-}
+.outer-ring { fill: #27ae60; transition: fill 0.3s; }
+.map-point:hover .outer-ring { fill: #c0392b; }
 
-.map-point:hover .outer-ring { 
-    fill: #1e8449; 
-}
-
-/* Skrytá jména - ukážou se při najetí (hover) */
 .point-label {
     opacity: 0;
     transition: opacity 0.3s ease;
     fill: #2c3e50;
-    font-size: 22px; 
+    font-size: 22px;
     font-weight: 900;
     text-anchor: middle;
     paint-order: stroke;
@@ -102,11 +67,9 @@ body {
     pointer-events: none;
 }
 
-.map-point:hover .point-label {
-    opacity: 1;
-}
+.map-point:hover .point-label { opacity: 1; }
 
-svg { width: 100%; height: auto; }
+svg { width: 100%; height: auto; overflow: visible; }
 .map-point { cursor: pointer; }
 
 .close-btn {
@@ -119,18 +82,4 @@ svg { width: 100%; height: auto; }
     cursor: pointer;
     margin-top: 15px;
     font-weight: bold;
-}
-
-/* Responzivita: Pokud je obrazovka malá, zrušíme sloupce */
-@media (max-width: 1300px) {
-    .main-content {
-        grid-template-columns: 1fr;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .map-container, .info-overlay {
-        grid-column: 1;
-        width: 95%;
-    }
 }
