@@ -1,9 +1,9 @@
 const locations = {
-    "mnichovo": { title: "Zámek Mnichovo Hradiště", badge: "Zámek", desc: "Barokní perla spojená s Valdštejny.", img: "Minchovo.jpg" },
-    "bela": { title: "Zámek Bělá p. B.", badge: "Zámek", desc: "Historický zámek s expozicí papírenství.", img: "bela.jpg" },
-    "michalovice": { title: "Zřícenina Michalovice", badge: "Zřícenina", desc: "Hrad se slavnou šikmou věží Putna.", img: "Putna.jpg" },
-    "loucen": { title: "Zámek Loučeň", badge: "Zámek", desc: "Zámek proslulý svými labyrinty a bludišti.", img: "Loucen.jpg" },
-    "benatky": { title: "Benátky n. Jizerou", badge: "Zámek", desc: "Zámek, kde působil Tycho Brahe.", img: "Benatky.jpg" } // Doplň si název obrázku pro Benátky
+    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
+    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek s expozicí o historii regionu a papírenství.", img: "bela.jpg" },
+    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad proslulý svou šikmou věží zvanou Putna.", img: "Putna.jpg" },
+    "loucen": { title: "Zámek Loučeň", desc: "Unikátní zámecký areál s mnoha labyrinty a bludišti.", img: "Loucen.jpg" },
+    "benatky": { title: "Zámek Benátky nad Jizerou", desc: "Místo, kde pobýval Tycho Brahe i Bedřich Smetana.", img: "Benatky.jpg" }
 };
 
 function hidePanels() {
@@ -17,17 +17,31 @@ document.querySelectorAll('.map-point').forEach(point => {
         hidePanels();
 
         if (id === "boleslav") {
-            document.getElementById('double-panel').style.display = 'grid';
+            // Zobrazení speciálního panelu pro Mladou Boleslav
+            const doublePanel = document.getElementById('double-panel');
+            doublePanel.style.display = 'grid';
+            
+            // Ujistíme se, že se obrázky v double-panelu správně načtou, 
+            // pokud by je prohlížeč ignoroval (vynucení překreslení)
+            const imgs = doublePanel.querySelectorAll('img');
+            imgs.forEach(img => {
+                const currentSrc = img.src;
+                img.src = currentSrc; 
+            });
+            
         } else {
+            // Standardní panel pro ostatní místa
             const data = locations[id];
             if (data) {
                 document.getElementById('p-title').innerText = data.title;
-                document.getElementById('p-badge').innerText = data.badge;
                 document.getElementById('p-desc').innerText = data.desc;
                 const imgElement = document.getElementById('p-img');
+                
                 if (data.img) {
                     imgElement.src = data.img;
                     imgElement.style.display = 'block';
+                } else {
+                    imgElement.style.display = 'none';
                 }
                 document.getElementById('info-panel').style.display = 'block';
             }
