@@ -10,14 +10,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const infoPanel = document.getElementById('info-panel');
     const doublePanel = document.getElementById('double-panel');
 
+    // Funkce pro schování všeho
     function hideAll() {
         if (infoPanel) infoPanel.style.display = 'none';
         if (doublePanel) doublePanel.style.display = 'none';
     }
 
-    // Tlačítka pro zavření
-    document.getElementById('close-info').addEventListener('click', hideAll);
-    document.getElementById('close-double').addEventListener('click', hideAll);
+    // Navázání funkcí na tlačítka "Zavřít"
+    const closeBtn1 = document.getElementById('close-info');
+    const closeBtn2 = document.getElementById('close-double');
+    
+    if (closeBtn1) closeBtn1.addEventListener('click', hideAll);
+    if (closeBtn2) closeBtn2.addEventListener('click', hideAll);
 
     // Klikání na body na mapě
     document.querySelectorAll('.map-point').forEach(point => {
@@ -26,21 +30,21 @@ document.addEventListener("DOMContentLoaded", function() {
             hideAll();
 
             if (id === "boleslav") {
-                doublePanel.style.display = 'block';
+                if (doublePanel) doublePanel.style.display = 'block';
             } else if (locations[id]) {
                 const data = locations[id];
                 document.getElementById('p-title').innerText = data.title;
                 document.getElementById('p-desc').innerText = data.desc;
                 const img = document.getElementById('p-img');
-                if (data.img) {
+                if (img) {
                     img.src = data.img;
                     img.style.display = 'block';
                 }
-                infoPanel.style.display = 'block';
+                if (infoPanel) infoPanel.style.display = 'block';
             }
         });
 
-        // Aby jména nezůstávala pod mapou
+        // Efekt vrstvení (aby popisky byly nad mapou)
         point.addEventListener('mouseenter', function() {
             this.parentNode.appendChild(this);
         });
