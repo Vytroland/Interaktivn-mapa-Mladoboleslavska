@@ -5,6 +5,7 @@ body { margin: 0; padding: 0; font-family: sans-serif; background: #1a1a1a; colo
     border-radius: 15px; padding: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
 }
 
+/* Styl pro SVG prvky */
 .map-point { cursor: pointer; }
 .outer-ring { fill: #27ae60; transition: 0.3s; stroke: white; stroke-width: 2; }
 .map-point:hover .outer-ring { fill: #e74c3c; r: 30; }
@@ -12,6 +13,7 @@ body { margin: 0; padding: 0; font-family: sans-serif; background: #1a1a1a; colo
 .point-label { opacity: 0; fill: #1a1a1a; font-weight: bold; font-size: 20px; pointer-events: none; transition: 0.2s; }
 .map-point:hover .point-label { opacity: 1; }
 
+/* Modální okno přes celou obrazovku */
 .modal {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center;
