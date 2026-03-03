@@ -10,15 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const infoPanel = document.getElementById('info-panel');
     const doublePanel = document.getElementById('double-panel');
 
+    // Funkce pro schování panelů
     const zavritVse = () => {
         if (infoPanel) infoPanel.style.display = 'none';
         if (doublePanel) doublePanel.style.display = 'none';
     };
 
-    // OPRAVA: Tady byla ID špatně (chybělo "btn-"). Teď to sedí na tvé HTML.
-    document.getElementById('close-info')?.addEventListener('click', zavritVse);
-    document.getElementById('close-double')?.addEventListener('click', zavritVse);
+    // TADY JE TA OPRAVA: ID musí být přesně 'close-info' a 'close-double'
+    const tlacitko1 = document.getElementById('close-info');
+    const tlacitko2 = document.getElementById('close-double');
 
+    if (tlacitko1) tlacitko1.addEventListener('click', zavritVse);
+    if (tlacitko2) tlacitko2.addEventListener('click', zavritVse);
+
+    // Klikání na body na mapě
     document.querySelectorAll('.map-point').forEach(point => {
         point.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
@@ -39,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
+        // Aby jména míst byla vždy navrchu
         point.addEventListener('mouseenter', function() {
             this.parentNode.appendChild(this);
         });
