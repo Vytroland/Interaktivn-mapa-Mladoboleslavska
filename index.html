@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Mladoboleslavska</title>
+    <title>Průvodce Mladoboleslavskem</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Průvodce Mladoboleslavskem</h1>
 
     <div class="map-container">
-        <svg viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
+        <svg id="svg-map" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
             <image href="Mapa.png" width="1000" height="1100" />
             
             <g class="map-point" data-id="mnichovo">
@@ -44,7 +44,7 @@
         <div class="modal-content">
             <h2 id="m-title"></h2>
             <img id="m-img" src="">
-            <button class="close-btn" id="closeModal">ZAVŘÍT</button>
+            <button class="close-btn" id="closeBtn">ZAVŘÍT</button>
         </div>
     </div>
 
