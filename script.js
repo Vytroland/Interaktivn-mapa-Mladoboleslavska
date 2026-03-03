@@ -1,40 +1,58 @@
 const locations = {
-    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů.", img: "Minchovo.jpg" },
-    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek a papírenství.", img: "bela.jpg" },
-    "michalovice": { title: "Zřícenina Michalovice", desc: "Hrad se šikmou věží Putna.", img: "Putna.jpg" },
-    "loucen": { title: "Zámek Loučeň", desc: "Labyrinty a bludiště.", img: "Loucen.jpg" },
-    "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Hvězdář Tycho Brahe.", img: "Benatky.jpg" }
+    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
+    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek s expozicí o historii regionu.", img: "bela.jpg" },
+    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad proslulý svou šikmou věží zvanou Putna.", img: "Putna.jpg" },
+    "loucen": { title: "Zámek Loučeň", desc: "Unikátní zámecký areál s mnoha labyrinty.", img: "Loucen.jpg" },
+    "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Místo pobytu Tychona Brahe a Bedřicha Smetany.", img: "Benatky.jpg" }
 };
 
+// Funkce pro zavření všech panelů
 function hidePanels() {
-    document.getElementById('info-panel').style.display = 'none';
-    document.getElementById('double-panel').style.display = 'none';
+    console.log("Zavírám panely"); // Pro kontrolu v konzoli
+    const infoPanel = document.getElementById('info-panel');
+    const doublePanel = document.getElementById('double-panel');
+    
+    if (infoPanel) infoPanel.style.display = 'none';
+    if (doublePanel) doublePanel.style.display = 'none';
 }
 
-document.querySelectorAll('.map-point').forEach(point => {
-    // Oprava překrývání: bod se při najetí přesune na konec SVG (do popředí)
-    point.addEventListener('mouseenter', function() {
-        this.parentNode.appendChild(this);
-    });
+// Hlavní logika po načtení stránky
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Script načten a připraven");
 
-    point.addEventListener('click', function() {
-        const id = this.getAttribute('data-id');
-        hidePanels();
+    document.querySelectorAll('.map-point').forEach(point => {
+        // Efekt pro vrstvení (aby jméno bylo vždy nahoře)
+        point.addEventListener('mouseenter', function() {
+            this.parentNode.appendChild(this);
+        });
 
-        if (id === "boleslav") {
-            document.getElementById('double-panel').style.display = 'block';
-        } else {
-            const data = locations[id];
-            if (data) {
-                document.getElementById('p-title').innerText = data.title;
-                document.getElementById('p-desc').innerText = data.desc;
-                const imgElement = document.getElementById('p-img');
-                if (data.img) {
-                    imgElement.src = data.img;
-                    imgElement.style.display = 'block';
+        // Reakce na kliknutí
+        point.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            console.log("Kliknuto na: " + id);
+            hidePanels();
+
+            if (id === "boleslav") {
+                const dbPanel = document.getElementById('double-panel');
+                if (dbPanel) dbPanel.style.display = 'block';
+            } else {
+                const data = locations[id];
+                if (data) {
+                    const infoPanel = document.getElementById('info-panel');
+                    document.getElementById('p-title').innerText = data.title;
+                    document.getElementById('p-desc').innerText = data.desc;
+                    
+                    const imgElement = document.getElementById('p-img');
+                    if (data.img) {
+                        imgElement.src = data.img;
+                        imgElement.style.display = 'block';
+                    } else {
+                        imgElement.style.display = 'none';
+                    }
+                    
+                    if (infoPanel) infoPanel.style.display = 'block';
                 }
-                document.getElementById('info-panel').style.display = 'block';
             }
-        }
+        });
     });
 });
