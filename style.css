@@ -22,13 +22,12 @@ body {
     padding: 15px 30px;
     border-radius: 50px;
     text-align: center;
-    flex: 1;
     max-width: 400px;
+    flex: 1;
 }
 
 .main-content {
     display: grid;
-    /* Rozdělení: Levý prostor | Mapa (850px) | Pravý prostor pro panel */
     grid-template-columns: 1fr 850px 1fr;
     width: 100%;
     gap: 20px;
@@ -48,10 +47,9 @@ body {
 
 .info-overlay {
     width: 380px;
-    display: none; /* Skryto v základu, zapíná JS */
+    display: none;
 }
 
-/* Body a Popisky */
 .outer-ring { fill: #27ae60; transition: fill 0.3s; }
 .map-point:hover .outer-ring { fill: #c0392b; }
 
@@ -68,10 +66,7 @@ body {
     pointer-events: none;
 }
 
-/* Zobrazení jména při najetí */
-.map-point:hover .point-label {
-    opacity: 1;
-}
+.map-point:hover .point-label { opacity: 1; }
 
 svg { width: 100%; height: auto; }
 .map-point { cursor: pointer; }
