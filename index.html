@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Průvodce Mladoboleslavskem</title>
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <link rel="stylesheet" href="style.css?v=3.1">
 </head>
 <body>
 
@@ -61,27 +61,27 @@
         <div class="info-column">
             <div id="info-panel" class="white-box info-overlay">
                 <h2 id="p-title">Název</h2>
-                <img id="p-img" src="" style="width:100%; border-radius:15px; margin:10px 0;">
+                <img id="p-img" src="" style="width:100%; border-radius:15px; margin:10px 0; display:none;">
                 <p id="p-desc"></p>
                 <button class="close-btn" onclick="hidePanels()">Zavřít</button>
             </div>
 
             <div id="double-panel" class="white-box info-overlay double-layout">
-                <div>
+                <div class="card">
                     <h3>Mladoboleslavský Templ</h3>
-                    <img src="Templp.jpg" style="width:100%; border-radius:10px;">
-                    <p>Městský palác s multimediální expozicí o historii regionu.</p>
+                    <img src="Templp.jpg" style="width:100%; border-radius:10px; margin-bottom:5px;">
+                    <p>Městský palác s multimediální expozicí.</p>
                 </div>
-                <div style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
+                <div class="card" style="margin-top:15px; border-top:1px solid #eee; padding-top:10px;">
                     <h3>Škoda Muzeum</h3>
-                    <img src="muzeum.jpg" style="width:100%; border-radius:10px;">
-                    <p>Moderní expozice mapující historii automobilky Škoda Auto.</p>
+                    <img src="muzeum.jpg" style="width:100%; border-radius:10px; margin-bottom:5px;">
+                    <p>Historie automobilky v moderním pojetí.</p>
                 </div>
-                <button class="close-btn" onclick="hidePanels()">Zavřít oba panely</button>
+                <button class="close-btn" onclick="hidePanels()">Zavřít</button>
             </div>
         </div>
     </div>
 
-    <script src="script.js?v=2.1"></script>
+    <script src="script.js?v=3.1"></script>
 </body>
 </html>
