@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Průvodce Mladoboleslavskem</title>
-    <link rel="stylesheet" href="style.css?v=final">
+    <link rel="stylesheet" href="style.css?v=2026">
 </head>
 <body>
     <header class="top-header">
@@ -56,6 +56,35 @@
         </div>
     </div>
 
-    <script src="script.js?v=final"></script>
+    <script>
+        const locations = {
+            "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní zámek rodiny Valdštejnů.", img: "Minchovo.jpg" },
+            "drabske": { title: "Drábské světničky", desc: "Skalní pevnost v Českém ráji.", img: "drabske.jpg" },
+            "bela-zamek": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek a muzeum.", img: "bela.jpg" },
+            "muzeum": { title: "Škoda Muzeum", desc: "Historie automobilů Škoda.", img: "muzeum.jpg" },
+            "michalovice": { title: "Zřícenina Michalovice", desc: "Hrad se šikmou věží Putna.", img: "Putna.jpg" },
+            "loucen": { title: "Zámek Loučeň", desc: "Zámek s labyrintáriem.", img: "Loucen.jpg" },
+            "benatky-zamek": { title: "Zámek Benátky n. Jizerou", desc: "Místo spojené s Tychonem Brahe.", img: "Benatky.jpg" }
+        };
+
+        document.querySelectorAll('.map-point').forEach(point => {
+            point.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const data = locations[id];
+                if (data) {
+                    document.getElementById('p-title').innerText = data.title;
+                    document.getElementById('p-desc').innerText = data.desc;
+                    const img = document.getElementById('p-img');
+                    img.src = data.img;
+                    img.style.display = 'block';
+                    document.getElementById('info-panel').style.display = 'block';
+                }
+            });
+
+            point.addEventListener('mouseenter', function() {
+                this.parentNode.appendChild(this);
+            });
+        });
+    </script>
 </body>
 </html>
