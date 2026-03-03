@@ -1,39 +1,39 @@
 const locations = {
-    "mnichovo": { t: "Mnichovo Hradiště", i: "Minchovo.jpg" },
-    "bela": { t: "Bělá p. Bezdězem", i: "bela.jpg" },
-    "boleslav": { t: "Mladá Boleslav", i: "muzeum.jpg" },
-    "michalovice": { t: "Michalovice", i: "Putna.jpg" },
-    "loucen": { t: "Zámek Loučeň", i: "Loucen.jpg" },
-    "benatky": { t: "Benátky n. Jizerou", i: "Benatky.jpg" }
+    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
+    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek s expozicí o historii regionu a papírenství.", img: "bela.jpg" },
+    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad proslulý svou šikmou věží zvanou Putna.", img: "Putna.jpg" },
+    "loucen": { title: "Zámek Loučeň", desc: "Unikátní zámecký areál s mnoha labyrinty a bludišti.", img: "Loucen.jpg" },
+    "benatky": { title: "Zámek Benátky nad Jizerou", desc: "Místo, kde pobýval Tycho Brahe i Bedřich Smetana.", img: "Benatky.jpg" }
 };
 
-const modal = document.getElementById('modal');
-const mTitle = document.getElementById('m-title');
-const mImg = document.getElementById('m-img');
-const closeBtn = document.getElementById('closeBtn');
+function hidePanels() {
+    document.getElementById('info-panel').style.display = 'none';
+    document.getElementById('double-panel').style.display = 'none';
+}
 
-// Musíme počkat, až se načte celé HTML
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.map-point').forEach(point => {
-        point.addEventListener('click', function() {
-            const data = locations[this.getAttribute('data-id')];
+document.querySelectorAll('.map-point').forEach(point => {
+    point.addEventListener('click', function() {
+        const id = this.getAttribute('data-id');
+        hidePanels();
+
+        if (id === "boleslav") {
+            // Speciální panel pro MB
+            document.getElementById('double-panel').style.display = 'grid';
+        } else {
+            // Standardní panel pro ostatní
+            const data = locations[id];
             if (data) {
-                mTitle.innerText = data.t;
-                mImg.src = data.i;
-                modal.style.display = 'flex';
+                document.getElementById('p-title').innerText = data.title;
+                document.getElementById('p-desc').innerText = data.desc;
+                const imgElement = document.getElementById('p-img');
+                if (data.img) {
+                    imgElement.src = data.img;
+                    imgElement.style.display = 'block';
+                } else {
+                    imgElement.style.display = 'none';
+                }
+                document.getElementById('info-panel').style.display = 'block';
             }
-        });
-
-        // Aby jméno bylo vždy navrchu
-        point.addEventListener('mouseenter', function() {
-            this.parentNode.appendChild(this);
-        });
+        }
     });
 });
-
-closeBtn.onclick = () => { modal.style.display = 'none'; };
-
-// Zavření kliknutím mimo okno
-window.onclick = (event) => {
-    if (event.target == modal) { modal.style.display = 'none'; }
-};
