@@ -4,7 +4,7 @@ body { margin: 0; font-family: sans-serif; background: #2c3e50; }
 
 .main-content {
     display: grid;
-    grid-template-columns: 1fr 800px 1fr; /* Tři sloupce */
+    grid-template-columns: 1fr 800px 1fr;
     gap: 20px;
     padding: 20px;
 }
@@ -13,11 +13,28 @@ body { margin: 0; font-family: sans-serif; background: #2c3e50; }
 .map-container { grid-column: 2; }
 .info-column { grid-column: 3; }
 
-.info-overlay { display: none; width: 350px; }
+/* Panel je v základu skrytý, ale skript mu změní display na 'block' */
+.info-overlay { 
+    display: none; 
+    width: 350px; 
+    position: sticky;
+    top: 20px;
+}
 
-.outer-ring { fill: #27ae60; cursor: pointer; }
-.point-label { opacity: 0; fill: black; font-weight: bold; pointer-events: none; transition: 0.3s; }
+.outer-ring { fill: #27ae60; cursor: pointer; transition: 0.3s; }
+.outer-ring:hover { fill: #e74c3c; }
+
+.point-label { opacity: 0; fill: black; font-weight: bold; pointer-events: none; transition: 0.3s; font-size: 16px; }
 .map-point:hover .point-label { opacity: 1; }
 
 svg { width: 100%; height: auto; }
-button { width: 100%; padding: 10px; margin-top: 10px; cursor: pointer; }
+.close-btn { 
+    width: 100%; 
+    padding: 10px; 
+    margin-top: 10px; 
+    cursor: pointer; 
+    background: #e74c3c; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+}
