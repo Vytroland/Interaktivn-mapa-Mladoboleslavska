@@ -1,3 +1,4 @@
+// Data pro jednotlivá místa
 const locations = {
     "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
     "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek s expozicí o historii regionu.", img: "bela.jpg" },
@@ -6,47 +7,50 @@ const locations = {
     "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Místo pobytu Tychona Brahe a Bedřicha Smetany.", img: "Benatky.jpg" }
 };
 
+// Počkáme na načtení celé stránky
 document.addEventListener("DOMContentLoaded", () => {
     const infoPanel = document.getElementById('info-panel');
     const doublePanel = document.getElementById('double-panel');
 
-    // Funkce pro schování panelů
-    const zavritVse = () => {
+    // Funkce pro zavření všeho
+    const closeAll = () => {
         if (infoPanel) infoPanel.style.display = 'none';
         if (doublePanel) doublePanel.style.display = 'none';
     };
 
-    // TADY JE TA OPRAVA: ID musí být přesně 'close-info' a 'close-double'
-    const tlacitko1 = document.getElementById('close-info');
-    const tlacitko2 = document.getElementById('close-double');
-
-    if (tlacitko1) tlacitko1.addEventListener('click', zavritVse);
-    if (tlacitko2) tlacitko2.addEventListener('click', zavritVse);
+    // Navázání na tvoje tlačítka (použijeme ID, která máš v HTML)
+    document.getElementById('close-info')?.addEventListener('click', closeAll);
+    document.getElementById('close-double')?.addEventListener('click', closeAll);
 
     // Klikání na body na mapě
     document.querySelectorAll('.map-point').forEach(point => {
+        point.style.cursor = 'pointer'; // Pro jistotu přidáme kurzor
+        
         point.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
-            zavritVse();
+            closeAll();
 
             if (id === "boleslav") {
                 if (doublePanel) doublePanel.style.display = 'block';
             } else if (locations[id]) {
                 const data = locations[id];
-                document.getElementById('p-title').innerText = data.title;
-                document.getElementById('p-desc').innerText = data.desc;
-                const img = document.getElementById('p-img');
-                if (img) {
-                    img.src = data.img;
-                    img.style.display = 'block';
+                const titleElem = document.getElementById('p-title');
+                const descElem = document.getElementById('p-desc');
+                const imgElem = document.getElementById('p-img');
+
+                if (titleElem) titleElem.innerText = data.title;
+                if (descElem) descElem.innerText = data.desc;
+                if (imgElem) {
+                    imgElem.src = data.img;
+                    imgElem.style.display = 'block';
                 }
                 if (infoPanel) infoPanel.style.display = 'block';
             }
         });
 
-        // Aby jména míst byla vždy navrchu
+        // Efekt popisku při najetí
         point.addEventListener('mouseenter', function() {
-            this.parentNode.appendChild(this);
+            this.parentNode.appendChild(this); // Posuneme bod dopředu
         });
     });
 });
