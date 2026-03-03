@@ -2,12 +2,10 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Průvodce Mladoboleslavskem</title>
-    <link rel="stylesheet" href="style.css?v=final_fix">
+    <title>Mapa Mladoboleslavska</title>
+    <link rel="stylesheet" href="style.css?v=oprava">
 </head>
 <body>
-
     <header class="top-header">
         <div class="panel"><h1>Mladoboleslavsko</h1></div>
     </header>
@@ -16,64 +14,41 @@
         <div class="side-spacer"></div>
 
         <div class="white-box map-container">
-            <svg id="mapa-boleslav" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+            <svg viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg" overflow="visible">
                 <image href="Mapa.png" x="0" y="0" width="1000" height="1100" />
                 
-                <g class="map-point" data-id="mnichovo">
-                    <circle class="outer-ring" cx="560" cy="150" r="25"/>
-                    <text x="560" y="210" class="point-label">Mnichovo Hradiště</text>
-                </g>
-
-                <g class="map-point" data-id="bela">
-                    <circle class="outer-ring" cx="300" cy="300" r="25"/>
-                    <text x="300" y="360" class="point-label">Bělá p. Bezdězem</text>
-                </g>
-
-                <g class="map-point" data-id="boleslav">
-                    <circle class="outer-ring" cx="530" cy="480" r="25"/>
-                    <text x="530" y="540" class="point-label">Mladá Boleslav</text>
-                </g>
-
-                <g class="map-point" data-id="michalovice">
-                    <circle class="outer-ring" cx="490" cy="510" r="25"/>
-                    <text x="490" y="570" class="point-label">Michalovice</text>
-                </g>
-
-                <g class="map-point" data-id="loucen">
-                    <circle class="outer-ring" cx="740" cy="670" r="25"/>
-                    <text x="740" y="730" class="point-label">Zámek Loučeň</text>
-                </g>
-
-                <g class="map-point" data-id="benatky">
-                    <circle class="outer-ring" cx="440" cy="790" r="25"/>
-                    <text x="440" y="850" class="point-label">Benátky n. Jizerou</text>
-                </g>
+                <g class="map-point" data-id="mnichovo"><circle class="outer-ring" cx="560" cy="150" r="25"/><text x="560" y="210" class="point-label">Mnichovo Hradiště</text></g>
+                <g class="map-point" data-id="bela"><circle class="outer-ring" cx="300" cy="300" r="25"/><text x="300" y="360" class="point-label">Bělá p. Bezdězem</text></g>
+                <g class="map-point" data-id="boleslav"><circle class="outer-ring" cx="530" cy="480" r="25"/><text x="530" y="540" class="point-label">Mladá Boleslav</text></g>
+                <g class="map-point" data-id="michalovice"><circle class="outer-ring" cx="490" cy="510" r="25"/><text x="490" y="570" class="point-label">Michalovice</text></g>
+                <g class="map-point" data-id="loucen"><circle class="outer-ring" cx="740" cy="670" r="25"/><text x="740" y="730" class="point-label">Zámek Loučeň</text></g>
+                <g class="map-point" data-id="benatky"><circle class="outer-ring" cx="440" cy="790" r="25"/><text x="440" y="850" class="point-label">Benátky n. Jizerou</text></g>
             </svg>
         </div>
 
         <div class="info-column">
             <div id="info-panel" class="white-box info-overlay">
-                <h2 id="p-title">Název místa</h2>
-                <img id="p-img" src="" alt="Foto" style="width:100%; border-radius:15px; margin:10px 0; display:none;">
-                <p id="p-desc">Popis se načte po kliknutí.</p>
-                <button id="close-info" class="close-btn">Zavřít</button>
+                <h2 id="p-title"></h2>
+                <img id="p-img" src="" style="width:100%; border-radius:10px; display:none; margin:10px 0;">
+                <p id="p-desc"></p>
+                <button id="btn-close-info" class="close-btn">Zavřít</button>
             </div>
 
             <div id="double-panel" class="white-box info-overlay">
                 <h3>Mladá Boleslav</h3>
-                <div style="margin-bottom: 20px;">
-                    <p><strong>Mladoboleslavský Templ</strong></p>
-                    <img src="Templp.jpg" alt="Templ" style="width:100%; border-radius:10px;">
+                <div style="margin-bottom:15px;">
+                    <p><strong>Templ</strong></p>
+                    <img src="Templp.jpg" style="width:100%; border-radius:10px;">
                 </div>
-                <div style="border-top: 1px solid #eee; padding-top: 15px;">
+                <div style="border-top:1px solid #ddd; padding-top:10px;">
                     <p><strong>Škoda Muzeum</strong></p>
-                    <img src="muzeum.jpg" alt="Muzeum" style="width:100%; border-radius:10px;">
+                    <img src="muzeum.jpg" style="width:100%; border-radius:10px;">
                 </div>
-                <button id="close-double" class="close-btn">Zavřít oba panely</button>
+                <button id="btn-close-double" class="close-btn">Zavřít vše</button>
             </div>
         </div>
     </div>
 
-    <script src="script.js?v=final_fix"></script>
+    <script src="script.js?v=oprava"></script>
 </body>
 </html>
