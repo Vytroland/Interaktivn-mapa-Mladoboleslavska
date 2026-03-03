@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Průvodce Mladoboleslavskem</title>
-    <link rel="stylesheet" href="style.css?v=1.6">
+    <link rel="stylesheet" href="style.css?v=2.1">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
     </header>
 
     <div class="main-content">
-        <div></div> 
+        <div class="side-spacer"></div> 
 
         <div class="white-box map-container">
             <svg id="mapa-boleslav" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
@@ -26,37 +26,62 @@
                     <text x="560" y="210" class="point-label">Mnichovo Hradiště</text>
                 </g>
 
+                <g class="map-point" data-id="bela">
+                    <circle class="outer-ring" cx="300" cy="300" r="25"/>
+                    <circle cx="300" cy="300" r="8" fill="white"/>
+                    <text x="300" y="360" class="point-label">Bělá p. Bezdězem</text>
+                </g>
+
                 <g class="map-point" data-id="boleslav">
                     <circle class="outer-ring" cx="530" cy="480" r="25"/>
                     <circle cx="530" cy="480" r="8" fill="white"/>
                     <text x="530" y="540" class="point-label">Mladá Boleslav</text>
                 </g>
-                
-                </svg>
+
+                <g class="map-point" data-id="michalovice">
+                    <circle class="outer-ring" cx="490" cy="510" r="25"/>
+                    <circle cx="490" cy="510" r="8" fill="white"/>
+                    <text x="490" y="570" class="point-label">Michalovice</text>
+                </g>
+
+                <g class="map-point" data-id="loucen">
+                    <circle class="outer-ring" cx="740" cy="670" r="25"/>
+                    <circle cx="740" cy="670" r="8" fill="white"/>
+                    <text x="740" y="730" class="point-label">Zámek Loučeň</text>
+                </g>
+
+                <g class="map-point" data-id="benatky">
+                    <circle class="outer-ring" cx="440" cy="790" r="25"/>
+                    <circle cx="440" cy="790" r="8" fill="white"/>
+                    <text x="440" y="850" class="point-label">Benátky n. Jizerou</text>
+                </g>
+            </svg>
         </div>
 
-        <div id="info-panel" class="white-box info-overlay">
-            <h2 id="p-title">Název</h2>
-            <img id="p-img" src="" style="width:100%; border-radius:15px; margin:10px 0;">
-            <p id="p-desc"></p>
-            <button class="close-btn" onclick="hidePanels()">Zavřít</button>
-        </div>
+        <div class="info-column">
+            <div id="info-panel" class="white-box info-overlay">
+                <h2 id="p-title">Název</h2>
+                <img id="p-img" src="" style="width:100%; border-radius:15px; margin:10px 0;">
+                <p id="p-desc"></p>
+                <button class="close-btn" onclick="hidePanels()">Zavřít</button>
+            </div>
 
-        <div id="double-panel" class="white-box info-overlay double-layout">
-            <div>
-                <h3>Mladoboleslavský Templ</h3>
-                <img src="Templp.jpg" style="width:100%; border-radius:10px;">
-                <p>Městský palác s multimediální expozicí.</p>
+            <div id="double-panel" class="white-box info-overlay double-layout">
+                <div>
+                    <h3>Mladoboleslavský Templ</h3>
+                    <img src="Templp.jpg" style="width:100%; border-radius:10px;">
+                    <p>Městský palác s multimediální expozicí o historii regionu.</p>
+                </div>
+                <div style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
+                    <h3>Škoda Muzeum</h3>
+                    <img src="muzeum.jpg" style="width:100%; border-radius:10px;">
+                    <p>Moderní expozice mapující historii automobilky Škoda Auto.</p>
+                </div>
+                <button class="close-btn" onclick="hidePanels()">Zavřít oba panely</button>
             </div>
-            <div style="margin-top: 15px;">
-                <h3>Škoda Muzeum</h3>
-                <img src="muzeum.jpg" style="width:100%; border-radius:10px;">
-                <p>Historie automobilky Škoda Auto.</p>
-            </div>
-            <button class="close-btn" onclick="hidePanels()">Zavřít oba</button>
         </div>
     </div>
 
-    <script src="script.js?v=1.6"></script>
+    <script src="script.js?v=2.1"></script>
 </body>
 </html>
