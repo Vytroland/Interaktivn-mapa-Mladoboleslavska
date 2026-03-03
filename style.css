@@ -1,8 +1,7 @@
-/* Základní vzhled */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     background-color: #2c3e50; 
     display: flex;
     flex-direction: column;
@@ -10,11 +9,11 @@ body {
     min-height: 100vh;
 }
 
-/* Bubliny v hlavičce - Sjednocené */
+/* Hlavička */
 .top-header {
     display: flex;
     gap: 20px;
-    padding: 30px;
+    padding: 20px;
     justify-content: center;
     width: 100%;
 }
@@ -22,32 +21,21 @@ body {
 .panel {
     background-color: #2980b9;
     color: white;
-    padding: 0 30px;
+    padding: 15px 30px;
     border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    max-width: 450px;
-    height: 70px; /* Stejná výška pro obě */
+    min-width: 300px;
 }
 
-.panel h1, .panel p { 
-    margin: 0; 
-    font-size: 1.2rem; 
-    font-weight: bold;
-}
-
-/* Mapa vždy uprostřed */
+/* GRID ROZVRŽENÍ */
 .main-content {
-    position: relative;
+    display: grid;
+    /* Sloupce: volno (levý), pevná mapa (střed), volno pro panel (pravý) */
+    grid-template-columns: 1fr 800px 1fr; 
     width: 100%;
-    max-width: 1400px;
-    display: flex;
-    justify-content: center;
+    gap: 30px;
     padding: 20px;
+    align-items: start; /* Zarovná panely k hornímu okraji mapy */
 }
 
 .white-box {
@@ -57,51 +45,47 @@ body {
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
+/* Mapa je fixovaná v prostředním sloupci (č. 2) */
 .map-container {
-    width: 850px;
-    max-width: 100%;
+    grid-column: 2;
+    width: 800px;
 }
 
-/* Informační panely - Plovoucí vpravo, nehýbou s mapou */
+/* Panely vyskakují vždy v pravém sloupci (č. 3) */
 .info-overlay {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 380px;
-    z-index: 100;
-    border: 3px solid #2980b9;
+    grid-column: 3;
+    width: 380px; /* Šířka panelu, aby nepřekážel */
+    display: none; /* Skryto v základu */
 }
 
+/* Širší panel pro Boleslav se v Gridu přizpůsobí sloupci */
 .double-layout {
-    width: 700px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: none; /* Přepne se na 'grid' přes JS */
+    grid-template-columns: 1fr; /* Karty pod sebou v pravém sloupci */
+    gap: 15px;
 }
 
-/* Body na mapě a jejich popisky */
-.outer-ring { 
-    fill: #27ae60; 
-    transition: fill 0.3s ease;
-}
-
-.map-point:hover .outer-ring { 
-    fill: #1e8449; /* Ztmavnutí při najetí */
-}
-
-/* Větší a čitelnější text pod kroužky */
+/* EFEKT PRO JMÉNA (Point Label) */
 .point-label {
+    opacity: 0; /* Jméno je neviditelné */
+    transition: opacity 0.3s ease;
     fill: #2c3e50;
-    font-size: 20px; 
+    font-size: 22px; 
     font-weight: 900;
     text-anchor: middle;
     paint-order: stroke;
-    stroke: white; /* Bílý obrys kolem písmen */
-    stroke-width: 5px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    stroke: white; /* Bílý obrys pro čitelnost */
+    stroke-width: 6px;
     pointer-events: none;
 }
+
+/* Když najedeš na bod (circle), ukáže se jméno (text) */
+.map-point:hover .point-label {
+    opacity: 1;
+}
+
+.outer-ring { fill: #27ae60; transition: fill 0.3s; }
+.map-point:hover .outer-ring { fill: #1e8449; }
 
 svg { width: 100%; height: auto; }
 .map-point { cursor: pointer; }
@@ -116,11 +100,4 @@ svg { width: 100%; height: auto; }
     cursor: pointer;
     margin-top: 15px;
     font-weight: bold;
-    font-size: 1rem;
-}
-
-/* Úprava pro menší obrazovky */
-@media (max-width: 1200px) {
-    .info-overlay { position: static; width: 95%; margin-top: 20px; }
-    .main-content { flex-direction: column; align-items: center; }
 }
