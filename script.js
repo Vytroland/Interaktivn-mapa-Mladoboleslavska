@@ -8,25 +8,32 @@ const locations = {
 };
 
 const modal = document.getElementById('modal');
-const closeBtn = document.getElementById('closeModal');
+const mTitle = document.getElementById('m-title');
+const mImg = document.getElementById('m-img');
+const closeBtn = document.getElementById('closeBtn');
 
-document.querySelectorAll('.map-point').forEach(point => {
-    point.addEventListener('click', function() {
-        const info = locations[this.getAttribute('data-id')];
-        if (info) {
-            document.getElementById('m-title').innerText = info.t;
-            document.getElementById('m-img').src = info.i;
-            modal.style.display = 'flex';
-        }
-    });
+// Musíme počkat, až se načte celé HTML
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.map-point').forEach(point => {
+        point.addEventListener('click', function() {
+            const data = locations[this.getAttribute('data-id')];
+            if (data) {
+                mTitle.innerText = data.t;
+                mImg.src = data.i;
+                modal.style.display = 'flex';
+            }
+        });
 
-    point.addEventListener('mouseenter', function() {
-        this.parentNode.appendChild(this);
+        // Aby jméno bylo vždy navrchu
+        point.addEventListener('mouseenter', function() {
+            this.parentNode.appendChild(this);
+        });
     });
 });
 
 closeBtn.onclick = () => { modal.style.display = 'none'; };
 
+// Zavření kliknutím mimo okno
 window.onclick = (event) => {
     if (event.target == modal) { modal.style.display = 'none'; }
 };
