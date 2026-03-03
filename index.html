@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Mapa Mladoboleslavska</title>
-    <link rel="stylesheet" href="style.css?v=1">
+    <link rel="stylesheet" href="style.css?v=final_test">
+    <style>
+        /* Přidáme kousek stylu přímo sem pro jistotu */
+        .point { fill: #27ae60; cursor: pointer; transition: 0.3s; }
+        .point:hover { fill: #e74c3c; }
+    </style>
 </head>
 <body>
     <div class="header"><h1>Mladoboleslavsko</h1></div>
@@ -11,6 +16,7 @@
     <div class="map-container">
         <svg viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
             <image href="Mapa.png" width="1000" height="1100" />
+            
             <circle class="point" data-id="mnichovo" cx="560" cy="150" r="25"/>
             <circle class="point" data-id="bela" cx="300" cy="300" r="25"/>
             <circle class="point" data-id="boleslav" cx="530" cy="480" r="25"/>
@@ -20,13 +26,42 @@
         </svg>
     </div>
 
-    <div id="info" class="info-box" style="display:none;">
+    <div id="info" class="info-box" style="display:none; background: white; color: black; padding: 20px; border-radius: 20px; margin: 20px auto; max-width: 500px;">
         <h2 id="t"></h2>
         <p id="d"></p>
         <div id="imgs"></div>
-        <button onclick="document.getElementById('info').style.display='none'">Zavřít</button>
+        <button onclick="document.getElementById('info').style.display='none'" style="width:100%; padding:10px; background:#e74c3c; color:white; border:none; border-radius:10px; cursor:pointer;">Zavřít</button>
     </div>
 
-    <script src="script.js?v=1"></script>
+    <script>
+        // Skript vložený přímo sem, aby se nemusel načítat externě
+        const data = {
+            "mnichovo": { n: "Mnichovo Hradiště", p: "Zámek Mnichovo Hradiště.", i: ["Minchovo.jpg"] },
+            "bela": { n: "Bělá p. Bezdězem", p: "Zámek Bělá.", i: ["bela.jpg"] },
+            "boleslav": { n: "Mladá Boleslav", p: "Templ a Škoda Muzeum.", i: ["Templp.jpg", "muzeum.jpg"] },
+            "michalovice": { n: "Michalovice", p: "Hrad Putna.", i: ["Putna.jpg"] },
+            "loucen": { n: "Loučeň", p: "Zámek a labyrinty.", i: ["Loucen.jpg"] },
+            "benatky": { n: "Benátky n. Jizerou", p: "Zámek Benátky.", i: ["Benatky.jpg"] }
+        };
+
+        document.querySelectorAll('.point').forEach(p => {
+            p.addEventListener('click', () => {
+                const item = data[p.getAttribute('data-id')];
+                document.getElementById('t').innerText = item.n;
+                document.getElementById('d').innerText = item.p;
+                const imgDiv = document.getElementById('imgs');
+                imgDiv.innerHTML = ''; 
+                item.i.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.style.width = "100%";
+                    img.style.marginBottom = "10px";
+                    img.style.borderRadius = "10px";
+                    imgDiv.appendChild(img);
+                });
+                document.getElementById('info').style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
