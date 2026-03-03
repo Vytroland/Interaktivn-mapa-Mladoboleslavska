@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Průvodce Mladoboleslavskem</title>
-    <link rel="stylesheet" href="style.css?v=6.0">
+    <link rel="stylesheet" href="style.css?v=7.0">
 </head>
 <body>
 
@@ -61,27 +61,26 @@
         <div class="info-column">
             <div id="info-panel" class="white-box info-overlay">
                 <h2 id="p-title">Název</h2>
-                <img id="p-img" src="" style="width:100%; border-radius:15px; margin:10px 0; display:none;">
+                <img id="p-img" src="" style="width:100%; border-radius:15px; margin:10px 0;">
                 <p id="p-desc"></p>
-                <button class="close-btn" onclick="hidePanels()">Zavřít</button>
+                <button class="close-btn" onclick="window.hidePanels()">Zavřít</button>
             </div>
 
             <div id="double-panel" class="white-box info-overlay">
-                <div style="margin-bottom:20px;">
-                    <h3>Mladoboleslavský Templ</h3>
+                <h3>Mladá Boleslav</h3>
+                <div style="margin-bottom:15px;">
+                    <strong>Templ</strong><br>
                     <img src="Templp.jpg" style="width:100%; border-radius:10px;">
-                    <p>Městský palác s multimediální expozicí o historii regionu.</p>
                 </div>
-                <div style="border-top: 1px solid #ddd; padding-top: 15px;">
-                    <h3>Škoda Muzeum</h3>
+                <div style="margin-bottom:15px;">
+                    <strong>Škoda Muzeum</strong><br>
                     <img src="muzeum.jpg" style="width:100%; border-radius:10px;">
-                    <p>Moderní expozice mapující historii automobilky Škoda Auto.</p>
                 </div>
-                <button class="close-btn" onclick="hidePanels()">Zavřít</button>
+                <button class="close-btn" onclick="window.hidePanels()">Zavřít oba</button>
             </div>
         </div>
     </div>
 
-    <script src="script.js?v=6.0"></script>
+    <script src="script.js?v=7.0"></script>
 </body>
 </html>
