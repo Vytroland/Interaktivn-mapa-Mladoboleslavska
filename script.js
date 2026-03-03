@@ -1,9 +1,9 @@
 const locations = {
-    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
-    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek s expozicí o historii regionu.", img: "bela.jpg" },
-    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad proslulý svou šikmou věží zvanou Putna.", img: "Putna.jpg" },
-    "loucen": { title: "Zámek Loučeň", desc: "Unikátní zámecký areál s mnoha labyrinty.", img: "Loucen.jpg" },
-    "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Místo pobytu Tychona Brahe a Bedřicha Smetany.", img: "Benatky.jpg" }
+    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů.", img: "Minchovo.jpg" },
+    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek regionu.", img: "bela.jpg" },
+    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad se šikmou věží Putna.", img: "Putna.jpg" },
+    "loucen": { title: "Zámek Loučeň", desc: "Zámecký areál s labyrinty.", img: "Loucen.jpg" },
+    "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Pobyt Tychona Brahe.", img: "Benatky.jpg" }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,12 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('close-double')?.addEventListener('click', zavritVse);
 
     document.querySelectorAll('.map-point').forEach(point => {
-        point.style.cursor = 'pointer';
-
         point.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
             zavritVse();
-
             if (id === "boleslav") {
                 if (doublePanel) doublePanel.style.display = 'block';
             } else if (locations[id]) {
@@ -32,17 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('p-title').innerText = data.title;
                 document.getElementById('p-desc').innerText = data.desc;
                 const img = document.getElementById('p-img');
-                if (img) {
-                    img.src = data.img;
-                    img.style.display = 'block';
-                }
+                if (img) { img.src = data.img; img.style.display = 'block'; }
                 if (infoPanel) infoPanel.style.display = 'block';
             }
-        });
-
-        // Efekt pro vrstvení jmen
-        point.addEventListener('mouseenter', function() {
-            this.parentNode.appendChild(this);
         });
     });
 });
