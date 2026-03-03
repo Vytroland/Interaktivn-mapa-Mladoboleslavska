@@ -1,27 +1,30 @@
-const data = {
-    "mnichovo": { n: "Mnichovo Hradiště", p: "Zámek Mnichovo Hradiště.", i: ["Minchovo.jpg"] },
-    "bela": { n: "Bělá p. Bezdězem", p: "Zámek Bělá.", i: ["bela.jpg"] },
-    "boleslav": { n: "Mladá Boleslav", p: "Templ a Škoda Muzeum.", i: ["Templp.jpg", "muzeum.jpg"] },
-    "michalovice": { n: "Michalovice", p: "Hrad Putna.", i: ["Putna.jpg"] },
-    "loucen": { n: "Loučeň", p: "Zámek a labyrinty.", i: ["Loucen.jpg"] },
-    "benatky": { n: "Benátky n. Jizerou", p: "Zámek Benátky.", i: ["Benatky.jpg"] }
+const locations = {
+    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní zámek rodiny Valdštejnů.", img: "Minchovo.jpg" },
+    "drabske": { title: "Drábské světničky", desc: "Skalní pevnost v Českém ráji.", img: "drabske.jpg" },
+    "bela-zamek": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek a muzeum.", img: "bela.jpg" },
+    "muzeum": { title: "Škoda Muzeum", desc: "Historie automobilů Škoda.", img: "muzeum.jpg" },
+    "michalovice": { title: "Zřícenina Michalovice", desc: "Hrad se šikmou věží Putna.", img: "Putna.jpg" },
+    "loucen": { title: "Zámek Loučeň", desc: "Zámek s labyrintáriem.", img: "Loucen.jpg" },
+    "benatky-zamek": { title: "Zámek Benátky n. Jizerou", desc: "Místo spojené s Tychonem Brahe.", img: "Benatky.jpg" }
 };
 
-document.querySelectorAll('.point').forEach(p => {
-    p.addEventListener('click', () => {
-        const item = data[p.dataset.id];
-        document.getElementById('t').innerText = item.n;
-        document.getElementById('d').innerText = item.p;
-        const imgDiv = document.getElementById('imgs');
-        imgDiv.innerHTML = ''; 
-        item.i.forEach(src => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.style.width = "100%";
-            img.style.marginBottom = "10px";
-            img.style.borderRadius = "10px";
-            imgDiv.appendChild(img);
-        });
-        document.getElementById('info').style.display = 'block';
+document.querySelectorAll('.map-point').forEach(point => {
+    // Kliknutí pro zobrazení info panelu
+    point.addEventListener('click', function() {
+        const id = this.getAttribute('data-id');
+        const data = locations[id];
+        if (data) {
+            document.getElementById('p-title').innerText = data.title;
+            document.getElementById('p-desc').innerText = data.desc;
+            const img = document.getElementById('p-img');
+            img.src = data.img;
+            img.style.display = 'block';
+            document.getElementById('info-panel').style.display = 'block';
+        }
+    });
+
+    // Najetí myší: Bod vyskočí dopředu
+    point.addEventListener('mouseenter', function() {
+        this.parentNode.appendChild(this);
     });
 });
