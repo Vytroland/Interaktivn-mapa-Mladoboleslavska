@@ -1,33 +1,12 @@
-// Seznam míst a jejich dat
 const locations = {
-    "mnichovo": { 
-        title: "Zámek Mnichovo Hradiště", 
-        desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", 
-        img: "Minchovo.jpg" 
-    },
-    "bela": { 
-        title: "Zámek Bělá p. Bezdězem", 
-        desc: "Historický zámek s expozicí o historii regionu a papírenství.", 
-        img: "bela.jpg" 
-    },
-    "michalovice": { 
-        title: "Zřícenina hradu Michalovice", 
-        desc: "Hrad proslulý svou šikmou věží zvanou Putna.", 
-        img: "Putna.jpg" 
-    },
-    "loucen": { 
-        title: "Zámek Loučeň", 
-        desc: "Unikátní zámecký areál s mnoha labyrinty a bludišti.", 
-        img: "Loucen.jpg" 
-    },
-    "benatky": { 
-        title: "Zámek Benátky n. Jizerou", 
-        desc: "Místo, kde pobýval Tycho Brahe i Bedřich Smetana.", 
-        img: "Benatky.jpg" 
-    }
+    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
+    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek s expozicí o historii regionu.", img: "bela.jpg" },
+    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad proslulý svou šikmou věží zvanou Putna.", img: "Putna.jpg" },
+    "loucen": { title: "Zámek Loučeň", desc: "Unikátní zámecký areál s mnoha labyrinty.", img: "Loucen.jpg" },
+    "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Místo pobytu Tychona Brahe a Bedřicha Smetany.", img: "Benatky.jpg" }
 };
 
-// Funkce pro skrytí panelů (musí být globální pro tlačítka v HTML)
+// Funkce pro zavření všech panelů (přístupná z HTML)
 window.hidePanels = function() {
     const info = document.getElementById('info-panel');
     const double = document.getElementById('double-panel');
@@ -35,39 +14,33 @@ window.hidePanels = function() {
     if (double) double.style.display = 'none';
 };
 
-// Hlavní kód se spustí až po úplném načtení stránky
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("Skript úspěšně nastartoval.");
+document.addEventListener("DOMContentLoaded", function() {
+    const points = document.querySelectorAll('.map-point');
 
-    const infoPanel = document.getElementById('info-panel');
-    const doublePanel = document.getElementById('double-panel');
-    const pTitle = document.getElementById('p-title');
-    const pDesc = document.getElementById('p-desc');
-    const pImg = document.getElementById('p-img');
-
-    document.querySelectorAll('.map-point').forEach(point => {
-        // Oprava překrývání: bod se při najetí přesune na konec SVG (do popředí)
+    points.forEach(point => {
+        // Oprava vrstvení: bod jde při najetí dopředu
         point.addEventListener('mouseenter', function() {
             this.parentNode.appendChild(this);
         });
 
+        // Reakce na kliknutí
         point.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
-            console.log("Kliknuto na ID:", id);
-            
-            // Nejdřív vše schováme
-            hidePanels();
+            window.hidePanels();
 
             if (id === "boleslav") {
-                if (doublePanel) doublePanel.style.display = 'block';
+                const boleslavPanel = document.getElementById('double-panel');
+                if (boleslavPanel) boleslavPanel.style.display = 'block';
             } else {
                 const data = locations[id];
+                const infoPanel = document.getElementById('info-panel');
                 if (data && infoPanel) {
-                    if (pTitle) pTitle.innerText = data.title;
-                    if (pDesc) pDesc.innerText = data.desc;
-                    if (pImg) {
-                        pImg.src = data.img;
-                        pImg.style.display = 'block';
+                    document.getElementById('p-title').innerText = data.title;
+                    document.getElementById('p-desc').innerText = data.desc;
+                    const img = document.getElementById('p-img');
+                    if (img) {
+                        img.src = data.img;
+                        img.style.display = 'block';
                     }
                     infoPanel.style.display = 'block';
                 }
