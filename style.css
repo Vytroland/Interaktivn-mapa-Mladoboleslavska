@@ -1,86 +1,116 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background-color: #2c3e50; 
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
+/* Horní sekce - sjednocené bubliny */
 .top-header {
     display: flex;
     gap: 20px;
-    padding: 20px;
-    width: 100%;
-    max-width: 900px;
+    padding: 30px;
     justify-content: center;
+    width: 100%;
 }
 
 .panel {
     background-color: #2980b9;
     color: white;
-    padding: 10px 25px;
+    padding: 20px 40px;
     border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    max-width: 450px; /* Sjednocení šířky */
+    height: 60px; /* Sjednocení výšky */
 }
 
+.panel h1, .panel p { 
+    margin: 0; 
+    font-size: 1.2rem; 
+    font-weight: bold;
+}
+
+/* Hlavní kontejner - Mapa uprostřed */
 .main-content {
+    position: relative;
+    width: 100%;
     display: flex;
-    gap: 20px;
-    width: 98%;
     justify-content: center;
-    padding: 20px;
+    padding-bottom: 50px;
 }
 
 .white-box {
     background-color: white;
-    border-radius: 20px;
+    border-radius: 25px;
     padding: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.map-container { flex: 2; max-width: 800px; }
-#info-wrapper { flex: 1; min-width: 350px; }
-
-/* Text pod kroužkem */
-.point-label {
-    fill: #2c3e50;
-    font-size: 14px;
-    font-weight: bold;
-    text-anchor: middle;
-    pointer-events: none;
-    background: white;
+.map-container {
+    width: 800px;
+    max-width: 95%;
 }
 
-/* Styl pro dvě karty vedle sebe */
+/* Informační panely jako vyskakovací okna (nehýbou s mapou) */
+#info-panel, #double-panel {
+    position: absolute;
+    right: 5%;
+    top: 50px;
+    width: 350px;
+    z-index: 10;
+    display: none; /* Skryto v základu */
+}
+
 #double-panel {
-    display: grid;
+    width: 600px;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    width: 600px; /* Širší panel pro dvě karty */
 }
 
-.split-card { padding: 15px; }
-.split-card h3 { color: #2980b9; margin-top: 0; }
-
-.category-badge {
-    background: #e67e22;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 8px;
-    font-size: 0.8rem;
+/* Body na mapě - Sjednocení barev */
+.outer-ring { 
+    fill: #27ae60; 
+    transition: fill 0.3s ease;
 }
+
+.map-point:hover .outer-ring { 
+    fill: #1e8449; /* Ztmavnutí při najetí */
+}
+
+/* Čitelnější popisky pod body */
+.point-label {
+    fill: #2c3e50;
+    font-size: 18px; /* Zvětšení textu */
+    font-weight: bold;
+    text-anchor: middle;
+    paint-order: stroke;
+    stroke: white; /* Bílý obrys pro čitelnost */
+    stroke-width: 4px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+svg { width: 100%; height: auto; }
+.map-point { cursor: pointer; }
 
 .close-btn {
     width: 100%;
-    background: #2c3e50;
+    background: #c0392b;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
     margin-top: 10px;
+    font-weight: bold;
 }
-
-svg { width: 100%; height: auto; }
-.map-point { cursor: pointer; }
