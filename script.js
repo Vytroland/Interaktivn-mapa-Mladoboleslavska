@@ -1,9 +1,34 @@
 const locations = {
-    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
-    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek s expozicí o historii regionu a papírenství.", img: "bela.jpg" },
-    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad proslulý svou šikmou věží zvanou Putna.", img: "Putna.jpg" },
-    "loucen": { title: "Zámek Loučeň", desc: "Unikátní zámecký areál s mnoha labyrinty a bludišti.", img: "Loucen.jpg" },
-    "benatky": { title: "Zámek Benátky nad Jizerou", desc: "Místo, kde pobýval Tycho Brahe i Bedřich Smetana.", img: "Benatky.jpg" }
+    "mnichovo": { 
+        title: "Zámek Mnichovo Hradiště", 
+        desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", 
+        img: "Minchovo.jpg" 
+    },
+    "bela": { 
+        title: "Zámek Bělá p. Bezdězem", 
+        desc: "Historický zámek s expozicí o historii regionu a papírenství.", 
+        img: "bela.jpg" 
+    },
+    "michalovice": { 
+        title: "Zřícenina hradu Michalovice", 
+        desc: "Hrad proslulý svou šikmou věží zvanou Putna.", 
+        img: "Putna.jpg" 
+    },
+    "loucen": { 
+        title: "Zámek Loučeň", 
+        desc: "Unikátní zámecký areál s mnoha labyrinty a bludišti.", 
+        img: "Loucen.jpg" 
+    },
+    "benatky": { 
+        title: "Zámek Benátky nad Jizerou", 
+        desc: "Místo, kde pobýval Tycho Brahe i Bedřich Smetana.", 
+        img: "Benatky.jpg" 
+    },
+    "boleslav": {
+        title: "Mladá Boleslav",
+        desc: "Město automobilů s bohatou historií.",
+        // Pro Boleslav používáme v HTML dva specifické obrázky: Templ.jpg a muzeum.jpg
+    }
 };
 
 function hidePanels() {
@@ -17,16 +42,15 @@ document.querySelectorAll('.map-point').forEach(point => {
         hidePanels();
 
         if (id === "boleslav") {
-            // Zobrazení speciálního panelu pro Mladou Boleslav
+            // Zobrazí ten dvojitý panel (Templ + Muzeum) definovaný v index.html
             const doublePanel = document.getElementById('double-panel');
             doublePanel.style.display = 'grid';
             
-            // Ujistíme se, že se obrázky v double-panelu správně načtou, 
-            // pokud by je prohlížeč ignoroval (vynucení překreslení)
+            // Vynutíme načtení obrázků Templ.jpg a muzeum.jpg
             const imgs = doublePanel.querySelectorAll('img');
             imgs.forEach(img => {
-                const currentSrc = img.src;
-                img.src = currentSrc; 
+                const src = img.getAttribute('src');
+                img.src = src; 
             });
             
         } else {
