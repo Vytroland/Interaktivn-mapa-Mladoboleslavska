@@ -2,8 +2,8 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Mapa Boleslavska</title>
-    <link rel="stylesheet" href="style.css?v=8">
+    <title>Mapa</title>
+    <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
     <header class="top-header">
@@ -12,8 +12,9 @@
 
     <div class="main-content">
         <div class="side-spacer"></div>
+
         <div class="white-box map-container">
-            <svg viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg" overflow="visible">
                 <image href="Mapa.png" x="0" y="0" width="1000" height="1100" />
                 <g class="map-point" data-id="mnichovo"><circle class="outer-ring" cx="560" cy="150" r="25"/><text x="560" y="210" class="point-label">Mnichovo Hradiště</text></g>
                 <g class="map-point" data-id="bela"><circle class="outer-ring" cx="300" cy="300" r="25"/><text x="300" y="360" class="point-label">Bělá p. Bezdězem</text></g>
@@ -23,21 +24,24 @@
                 <g class="map-point" data-id="benatky"><circle class="outer-ring" cx="440" cy="790" r="25"/><text x="440" y="850" class="point-label">Benátky n. Jizerou</text></g>
             </svg>
         </div>
+
         <div class="info-column">
             <div id="info-panel" class="white-box info-overlay">
-                <h2 id="p-title">Název</h2>
-                <img id="p-img" src="" style="width:100%; border-radius:10px;">
+                <h2 id="p-title"></h2>
+                <img id="p-img" src="" style="width:100%; border-radius:10px; display:none;">
                 <p id="p-desc"></p>
                 <button onclick="window.hidePanels()">Zavřít</button>
             </div>
             <div id="double-panel" class="white-box info-overlay">
                 <h3>Mladá Boleslav</h3>
+                <p><strong>Templ</strong></p>
                 <img src="Templp.jpg" style="width:100%; border-radius:10px;">
-                <p>Templ a Škoda Muzeum</p>
+                <p><strong>Škoda Muzeum</strong></p>
+                <img src="muzeum.jpg" style="width:100%; border-radius:10px;">
                 <button onclick="window.hidePanels()">Zavřít</button>
             </div>
         </div>
     </div>
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=10"></script>
 </body>
 </html>
