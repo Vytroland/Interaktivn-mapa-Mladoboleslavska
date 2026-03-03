@@ -2,66 +2,60 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Mapa Mladoboleslavska</title>
-    <link rel="stylesheet" href="style.css?v=final_test">
-    <style>
-        /* Přidáme kousek stylu přímo sem pro jistotu */
-        .point { fill: #27ae60; cursor: pointer; transition: 0.3s; }
-        .point:hover { fill: #e74c3c; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Průvodce Mladoboleslavskem</title>
+    <link rel="stylesheet" href="style.css?v=final">
 </head>
 <body>
-    <div class="header"><h1>Mladoboleslavsko</h1></div>
+    <header class="top-header">
+        <div class="panel"><h1>Průvodce Mladoboleslavskem</h1></div>
+        <div class="panel"><p>Klikněte na body na mapě!</p></div>
+    </header>
 
-    <div class="map-container">
-        <svg viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
-            <image href="Mapa.png" width="1000" height="1100" />
-            
-            <circle class="point" data-id="mnichovo" cx="560" cy="150" r="25"/>
-            <circle class="point" data-id="bela" cx="300" cy="300" r="25"/>
-            <circle class="point" data-id="boleslav" cx="530" cy="480" r="25"/>
-            <circle class="point" data-id="michalovice" cx="490" cy="510" r="25"/>
-            <circle class="point" data-id="loucen" cx="740" cy="670" r="25"/>
-            <circle class="point" data-id="benatky" cx="440" cy="790" r="25"/>
-        </svg>
+    <div class="main-content">
+        <div class="white-box map-container">
+            <svg id="mapa-boleslav" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
+                <image href="Mapa.png" x="0" y="0" width="1000" height="1100" />
+                
+                <g class="map-point" data-id="mnichovo">
+                    <circle class="outer-ring" cx="560" cy="150" r="25" fill="#27ae60"/>
+                    <text x="560" y="210" class="point-label" text-anchor="middle">Mnichovo Hradiště</text>
+                </g>
+                <g class="map-point" data-id="drabske">
+                    <circle class="outer-ring" cx="680" cy="140" r="25" fill="#27ae60"/>
+                    <text x="680" y="200" class="point-label" text-anchor="middle">Drábské světničky</text>
+                </g>
+                <g class="map-point" data-id="bela-zamek">
+                    <circle class="outer-ring" cx="300" cy="300" r="25" fill="#27ae60"/>
+                    <text x="300" y="360" class="point-label" text-anchor="middle">Zámek Bělá</text>
+                </g>
+                <g class="map-point" data-id="muzeum">
+                    <circle class="outer-ring" cx="530" cy="480" r="25" fill="#27ae60"/>
+                    <text x="530" y="540" class="point-label" text-anchor="middle">Škoda Muzeum</text>
+                </g>
+                <g class="map-point" data-id="michalovice">
+                    <circle class="outer-ring" cx="490" cy="510" r="25" fill="#27ae60"/>
+                    <text x="490" y="570" class="point-label" text-anchor="middle">Michalovice</text>
+                </g>
+                <g class="map-point" data-id="loucen">
+                    <circle class="outer-ring" cx="740" cy="670" r="25" fill="#27ae60"/>
+                    <text x="740" y="730" class="point-label" text-anchor="middle">Zámek Loučeň</text>
+                </g>
+                <g class="map-point" data-id="benatky-zamek">
+                    <circle class="outer-ring" cx="440" cy="790" r="25" fill="#27ae60"/>
+                    <text x="440" y="850" class="point-label" text-anchor="middle">Benátky n. J.</text>
+                </g>
+            </svg>
+        </div>
+
+        <div id="info-panel" class="white-box">
+            <h2 id="p-title">Vyberte místo</h2>
+            <img id="p-img" src="" style="display:none; width:100%; border-radius:15px; margin:15px 0;">
+            <p id="p-desc">Podrobnosti se zobrazí po kliknutí.</p>
+            <button class="close-btn" onclick="document.getElementById('info-panel').style.display='none'">Zavřít</button>
+        </div>
     </div>
 
-    <div id="info" class="info-box" style="display:none; background: white; color: black; padding: 20px; border-radius: 20px; margin: 20px auto; max-width: 500px;">
-        <h2 id="t"></h2>
-        <p id="d"></p>
-        <div id="imgs"></div>
-        <button onclick="document.getElementById('info').style.display='none'" style="width:100%; padding:10px; background:#e74c3c; color:white; border:none; border-radius:10px; cursor:pointer;">Zavřít</button>
-    </div>
-
-    <script>
-        // Skript vložený přímo sem, aby se nemusel načítat externě
-        const data = {
-            "mnichovo": { n: "Mnichovo Hradiště", p: "Zámek Mnichovo Hradiště.", i: ["Minchovo.jpg"] },
-            "bela": { n: "Bělá p. Bezdězem", p: "Zámek Bělá.", i: ["bela.jpg"] },
-            "boleslav": { n: "Mladá Boleslav", p: "Templ a Škoda Muzeum.", i: ["Templp.jpg", "muzeum.jpg"] },
-            "michalovice": { n: "Michalovice", p: "Hrad Putna.", i: ["Putna.jpg"] },
-            "loucen": { n: "Loučeň", p: "Zámek a labyrinty.", i: ["Loucen.jpg"] },
-            "benatky": { n: "Benátky n. Jizerou", p: "Zámek Benátky.", i: ["Benatky.jpg"] }
-        };
-
-        document.querySelectorAll('.point').forEach(p => {
-            p.addEventListener('click', () => {
-                const item = data[p.getAttribute('data-id')];
-                document.getElementById('t').innerText = item.n;
-                document.getElementById('d').innerText = item.p;
-                const imgDiv = document.getElementById('imgs');
-                imgDiv.innerHTML = ''; 
-                item.i.forEach(src => {
-                    const img = document.createElement('img');
-                    img.src = src;
-                    img.style.width = "100%";
-                    img.style.marginBottom = "10px";
-                    img.style.borderRadius = "10px";
-                    imgDiv.appendChild(img);
-                });
-                document.getElementById('info').style.display = 'block';
-            });
-        });
-    </script>
+    <script src="script.js?v=final"></script>
 </body>
 </html>
