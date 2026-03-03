@@ -1,14 +1,8 @@
-body { margin: 0; font-family: sans-serif; background: #2c3e50; color: white; }
-.top-header { display: flex; justify-content: center; padding: 20px; }
-.panel { background: #2980b9; padding: 10px 40px; border-radius: 30px; }
-.main-content { display: flex; justify-content: center; gap: 30px; padding: 20px; }
-.white-box { background: white; padding: 20px; border-radius: 20px; color: black; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-.map-container { width: 800px; }
-.info-column { width: 350px; }
-.info-overlay { display: none; }
-.outer-ring { fill: #27ae60; cursor: pointer; transition: 0.3s; }
-.outer-ring:hover { fill: #e74c3c; }
-.point-label { opacity: 0; fill: black; font-weight: bold; pointer-events: none; transition: 0.3s; }
-.map-point:hover .point-label { opacity: 1; }
-svg { width: 100%; height: auto; }
-.close-btn { width: 100%; padding: 10px; margin-top: 10px; cursor: pointer; background: #e74c3c; color: white; border: none; border-radius: 10px; }
+body { background: #2c3e50; font-family: sans-serif; text-align: center; color: white; margin: 0; }
+.header { padding: 20px; }
+h1 { background: #2980b9; display: inline-block; padding: 10px 30px; border-radius: 20px; }
+.map-container { background: white; margin: 20px auto; width: 90%; max-width: 800px; border-radius: 20px; padding: 10px; }
+.point { fill: #27ae60; cursor: pointer; transition: 0.3s; }
+.point:hover { fill: #e74c3c; }
+.info-box { background: white; color: black; width: 90%; max-width: 500px; margin: 20px auto; padding: 20px; border-radius: 20px; }
+button { width: 100%; padding: 10px; background: #e74c3c; color: white; border: none; border-radius: 10px; cursor: pointer; }
