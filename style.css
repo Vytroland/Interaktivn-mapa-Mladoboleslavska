@@ -1,3 +1,4 @@
+/* Základní vzhled */
 body {
     margin: 0;
     padding: 0;
@@ -9,7 +10,7 @@ body {
     min-height: 100vh;
 }
 
-/* Horní sekce - sjednocené bubliny */
+/* Bubliny v hlavičce - Sjednocené */
 .top-header {
     display: flex;
     gap: 20px;
@@ -21,7 +22,7 @@ body {
 .panel {
     background-color: #2980b9;
     color: white;
-    padding: 20px 40px;
+    padding: 0 30px;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     text-align: center;
@@ -29,8 +30,8 @@ body {
     align-items: center;
     justify-content: center;
     flex: 1;
-    max-width: 450px; /* Sjednocení šířky */
-    height: 60px; /* Sjednocení výšky */
+    max-width: 450px;
+    height: 70px; /* Stejná výška pro obě */
 }
 
 .panel h1, .panel p { 
@@ -39,44 +40,46 @@ body {
     font-weight: bold;
 }
 
-/* Hlavní kontejner - Mapa uprostřed */
+/* Mapa vždy uprostřed */
 .main-content {
     position: relative;
     width: 100%;
+    max-width: 1400px;
     display: flex;
     justify-content: center;
-    padding-bottom: 50px;
+    padding: 20px;
 }
 
 .white-box {
     background-color: white;
     border-radius: 25px;
     padding: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
 .map-container {
-    width: 800px;
-    max-width: 95%;
+    width: 850px;
+    max-width: 100%;
 }
 
-/* Informační panely jako vyskakovací okna (nehýbou s mapou) */
-#info-panel, #double-panel {
+/* Informační panely - Plovoucí vpravo, nehýbou s mapou */
+.info-overlay {
     position: absolute;
-    right: 5%;
-    top: 50px;
-    width: 350px;
-    z-index: 10;
-    display: none; /* Skryto v základu */
+    right: 20px;
+    top: 20px;
+    width: 380px;
+    z-index: 100;
+    border: 3px solid #2980b9;
 }
 
-#double-panel {
-    width: 600px;
+.double-layout {
+    width: 700px;
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 20px;
 }
 
-/* Body na mapě - Sjednocení barev */
+/* Body na mapě a jejich popisky */
 .outer-ring { 
     fill: #27ae60; 
     transition: fill 0.3s ease;
@@ -86,15 +89,15 @@ body {
     fill: #1e8449; /* Ztmavnutí při najetí */
 }
 
-/* Čitelnější popisky pod body */
+/* Větší a čitelnější text pod kroužky */
 .point-label {
     fill: #2c3e50;
-    font-size: 18px; /* Zvětšení textu */
-    font-weight: bold;
+    font-size: 20px; 
+    font-weight: 900;
     text-anchor: middle;
     paint-order: stroke;
-    stroke: white; /* Bílý obrys pro čitelnost */
-    stroke-width: 4px;
+    stroke: white; /* Bílý obrys kolem písmen */
+    stroke-width: 5px;
     stroke-linecap: round;
     stroke-linejoin: round;
     pointer-events: none;
@@ -108,9 +111,16 @@ svg { width: 100%; height: auto; }
     background: #c0392b;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 12px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
     font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Úprava pro menší obrazovky */
+@media (max-width: 1200px) {
+    .info-overlay { position: static; width: 95%; margin-top: 20px; }
+    .main-content { flex-direction: column; align-items: center; }
 }
