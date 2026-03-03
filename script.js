@@ -10,21 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const infoPanel = document.getElementById('info-panel');
     const doublePanel = document.getElementById('double-panel');
 
-    // Funkce, která schová oba typy panelů
     const zavritVse = () => {
         if (infoPanel) infoPanel.style.display = 'none';
         if (doublePanel) doublePanel.style.display = 'none';
     };
 
-    // Aktivace tlačítek "Zavřít" podle jejich ID z HTML
-    document.getElementById('btn-close-info')?.addEventListener('click', zavritVse);
-    document.getElementById('btn-close-double')?.addEventListener('click', zavritVse);
+    // OPRAVA: Tady byla ID špatně (chybělo "btn-"). Teď to sedí na tvé HTML.
+    document.getElementById('close-info')?.addEventListener('click', zavritVse);
+    document.getElementById('close-double')?.addEventListener('click', zavritVse);
 
-    // Nastavení klikání na body na mapě
     document.querySelectorAll('.map-point').forEach(point => {
         point.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
-            zavritVse(); // Nejdřív vše schovat, pak otevřít ten správný
+            zavritVse();
 
             if (id === "boleslav") {
                 if (doublePanel) doublePanel.style.display = 'block';
@@ -41,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Oprava vrstvení, aby popisky nezůstávaly pod mapou
         point.addEventListener('mouseenter', function() {
             this.parentNode.appendChild(this);
         });
