@@ -1,37 +1,27 @@
-const locations = {
-    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů.", img: "Minchovo.jpg" },
-    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek regionu.", img: "bela.jpg" },
-    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad se šikmou věží Putna.", img: "Putna.jpg" },
-    "loucen": { title: "Zámek Loučeň", desc: "Zámecký areál s labyrinty.", img: "Loucen.jpg" },
-    "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Pobyt Tychona Brahe.", img: "Benatky.jpg" }
+const data = {
+    "mnichovo": { n: "Mnichovo Hradiště", p: "Zámek Mnichovo Hradiště.", i: ["Minchovo.jpg"] },
+    "bela": { n: "Bělá p. Bezdězem", p: "Zámek Bělá.", i: ["bela.jpg"] },
+    "boleslav": { n: "Mladá Boleslav", p: "Templ a Škoda Muzeum.", i: ["Templp.jpg", "muzeum.jpg"] },
+    "michalovice": { n: "Michalovice", p: "Hrad Putna.", i: ["Putna.jpg"] },
+    "loucen": { n: "Loučeň", p: "Zámek a labyrinty.", i: ["Loucen.jpg"] },
+    "benatky": { n: "Benátky n. Jizerou", p: "Zámek Benátky.", i: ["Benatky.jpg"] }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-    const infoPanel = document.getElementById('info-panel');
-    const doublePanel = document.getElementById('double-panel');
-
-    const zavritVse = () => {
-        if (infoPanel) infoPanel.style.display = 'none';
-        if (doublePanel) doublePanel.style.display = 'none';
-    };
-
-    document.getElementById('close-info')?.addEventListener('click', zavritVse);
-    document.getElementById('close-double')?.addEventListener('click', zavritVse);
-
-    document.querySelectorAll('.map-point').forEach(point => {
-        point.addEventListener('click', function() {
-            const id = this.getAttribute('data-id');
-            zavritVse();
-            if (id === "boleslav") {
-                if (doublePanel) doublePanel.style.display = 'block';
-            } else if (locations[id]) {
-                const data = locations[id];
-                document.getElementById('p-title').innerText = data.title;
-                document.getElementById('p-desc').innerText = data.desc;
-                const img = document.getElementById('p-img');
-                if (img) { img.src = data.img; img.style.display = 'block'; }
-                if (infoPanel) infoPanel.style.display = 'block';
-            }
+document.querySelectorAll('.point').forEach(p => {
+    p.addEventListener('click', () => {
+        const item = data[p.dataset.id];
+        document.getElementById('t').innerText = item.n;
+        document.getElementById('d').innerText = item.p;
+        const imgDiv = document.getElementById('imgs');
+        imgDiv.innerHTML = ''; 
+        item.i.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.style.width = "100%";
+            img.style.marginBottom = "10px";
+            img.style.borderRadius = "10px";
+            imgDiv.appendChild(img);
         });
+        document.getElementById('info').style.display = 'block';
     });
 });
