@@ -6,53 +6,46 @@ const locations = {
     "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Místo pobytu Tychona Brahe a Bedřicha Smetany.", img: "Benatky.jpg" }
 };
 
-// Funkce pro zavření všech panelů
 function hidePanels() {
-    console.log("Zavírám panely"); // Pro kontrolu v konzoli
     const infoPanel = document.getElementById('info-panel');
     const doublePanel = document.getElementById('double-panel');
-    
     if (infoPanel) infoPanel.style.display = 'none';
     if (doublePanel) doublePanel.style.display = 'none';
 }
 
-// Hlavní logika po načtení stránky
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Script načten a připraven");
+// Spustí se až po načtení stránky
+window.onload = function() {
+    console.log("Mapa je připravena!");
 
     document.querySelectorAll('.map-point').forEach(point => {
-        // Efekt pro vrstvení (aby jméno bylo vždy nahoře)
+        // Oprava vrstvení při najetí
         point.addEventListener('mouseenter', function() {
             this.parentNode.appendChild(this);
         });
 
-        // Reakce na kliknutí
+        // Kliknutí na bod
         point.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
             console.log("Kliknuto na: " + id);
             hidePanels();
 
             if (id === "boleslav") {
-                const dbPanel = document.getElementById('double-panel');
-                if (dbPanel) dbPanel.style.display = 'block';
+                const boleslavPanel = document.getElementById('double-panel');
+                if (boleslavPanel) boleslavPanel.style.display = 'block';
             } else {
                 const data = locations[id];
-                if (data) {
-                    const infoPanel = document.getElementById('info-panel');
+                const infoPanel = document.getElementById('info-panel');
+                if (data && infoPanel) {
                     document.getElementById('p-title').innerText = data.title;
                     document.getElementById('p-desc').innerText = data.desc;
-                    
                     const imgElement = document.getElementById('p-img');
                     if (data.img) {
                         imgElement.src = data.img;
                         imgElement.style.display = 'block';
-                    } else {
-                        imgElement.style.display = 'none';
                     }
-                    
-                    if (infoPanel) infoPanel.style.display = 'block';
+                    infoPanel.style.display = 'block';
                 }
             }
         });
     });
-});
+};
