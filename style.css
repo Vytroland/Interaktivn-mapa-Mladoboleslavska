@@ -22,12 +22,13 @@ body {
     padding: 15px 30px;
     border-radius: 50px;
     text-align: center;
+    flex: 1;
     max-width: 400px;
 }
 
 .main-content {
     display: grid;
-    /* Grid: Pružné vlevo | Mapa (850px) | Pružné vpravo */
+    /* Rozdělení: Levý prostor | Mapa (850px) | Pravý prostor pro panel */
     grid-template-columns: 1fr 850px 1fr;
     width: 100%;
     gap: 20px;
@@ -47,10 +48,10 @@ body {
 
 .info-overlay {
     width: 380px;
-    display: none; /* Zapíná Script přes 'block' */
+    display: none; /* Skryto v základu, zapíná JS */
 }
 
-/* Styl bodů a jmen */
+/* Body a Popisky */
 .outer-ring { fill: #27ae60; transition: fill 0.3s; }
 .map-point:hover .outer-ring { fill: #c0392b; }
 
@@ -72,7 +73,7 @@ body {
     opacity: 1;
 }
 
-svg { width: 100%; height: auto; overflow: visible; }
+svg { width: 100%; height: auto; }
 .map-point { cursor: pointer; }
 
 .close-btn {
