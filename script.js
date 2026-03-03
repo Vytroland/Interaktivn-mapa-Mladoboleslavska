@@ -6,28 +6,25 @@ const locations = {
     "benatky": { title: "Zámek Benátky n. Jizerou", desc: "Místo pobytu Tychona Brahe a Bedřicha Smetany.", img: "Benatky.jpg" }
 };
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
     const infoPanel = document.getElementById('info-panel');
     const doublePanel = document.getElementById('double-panel');
 
-    // Funkce pro schování všeho
-    function hideAll() {
+    // Funkce, která schová oba typy panelů
+    const zavritVse = () => {
         if (infoPanel) infoPanel.style.display = 'none';
         if (doublePanel) doublePanel.style.display = 'none';
-    }
+    };
 
-    // Navázání funkcí na tlačítka "Zavřít"
-    const closeBtn1 = document.getElementById('close-info');
-    const closeBtn2 = document.getElementById('close-double');
-    
-    if (closeBtn1) closeBtn1.addEventListener('click', hideAll);
-    if (closeBtn2) closeBtn2.addEventListener('click', hideAll);
+    // Aktivace tlačítek "Zavřít" podle jejich ID z HTML
+    document.getElementById('btn-close-info')?.addEventListener('click', zavritVse);
+    document.getElementById('btn-close-double')?.addEventListener('click', zavritVse);
 
-    // Klikání na body na mapě
+    // Nastavení klikání na body na mapě
     document.querySelectorAll('.map-point').forEach(point => {
         point.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
-            hideAll();
+            zavritVse(); // Nejdřív vše schovat, pak otevřít ten správný
 
             if (id === "boleslav") {
                 if (doublePanel) doublePanel.style.display = 'block';
@@ -44,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        // Efekt vrstvení (aby popisky byly nad mapou)
+        // Oprava vrstvení, aby popisky nezůstávaly pod mapou
         point.addEventListener('mouseenter', function() {
             this.parentNode.appendChild(this);
         });
