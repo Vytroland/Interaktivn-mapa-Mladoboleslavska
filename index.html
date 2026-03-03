@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Průvodce Mladoboleslavskem</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.2">
 </head>
 <body>
 
@@ -21,63 +21,63 @@
                 <g class="map-point" data-id="mnichovo">
                     <circle class="outer-ring" cx="560" cy="150" r="25"/>
                     <circle class="inner-dot" cx="560" cy="150" r="8" fill="white"/>
-                    <text x="560" y="205" class="point-label">Mnichovo Hradiště</text>
+                    <text x="560" y="210" class="point-label">Mnichovo Hradiště</text>
                 </g>
 
                 <g class="map-point" data-id="bela">
                     <circle class="outer-ring" cx="300" cy="300" r="25"/>
                     <circle class="inner-dot" cx="300" cy="300" r="8" fill="white"/>
-                    <text x="300" y="355" class="point-label">Bělá p. Bezdězem</text>
+                    <text x="300" y="360" class="point-label">Bělá p. Bezdězem</text>
                 </g>
 
                 <g class="map-point" data-id="boleslav">
                     <circle class="outer-ring" cx="530" cy="480" r="25"/>
                     <circle class="inner-dot" cx="530" cy="480" r="8" fill="white"/>
-                    <text x="530" y="535" class="point-label">Mladá Boleslav</text>
+                    <text x="530" y="540" class="point-label">Mladá Boleslav</text>
                 </g>
 
                 <g class="map-point" data-id="michalovice">
                     <circle class="outer-ring" cx="490" cy="510" r="25"/>
                     <circle class="inner-dot" cx="490" cy="510" r="8" fill="white"/>
-                    <text x="490" y="565" class="point-label">Michalovice</text>
+                    <text x="490" y="570" class="point-label">Michalovice</text>
                 </g>
 
                 <g class="map-point" data-id="loucen">
                     <circle class="outer-ring" cx="740" cy="670" r="25"/>
                     <circle class="inner-dot" cx="740" cy="670" r="8" fill="white"/>
-                    <text x="740" y="725" class="point-label">Zámek Loučeň</text>
+                    <text x="740" y="730" class="point-label">Zámek Loučeň</text>
                 </g>
 
                 <g class="map-point" data-id="benatky">
                     <circle class="outer-ring" cx="440" cy="790" r="25"/>
                     <circle class="inner-dot" cx="440" cy="790" r="8" fill="white"/>
-                    <text x="440" y="845" class="point-label">Benátky n. Jizerou</text>
+                    <text x="440" y="850" class="point-label">Benátky n. Jizerou</text>
                 </g>
             </svg>
         </div>
 
-        <div id="info-panel" class="white-box">
+        <div id="info-panel" class="white-box info-overlay">
             <h2 id="p-title">Název</h2>
-            <img id="p-img" src="" alt="" style="width:100%; border-radius:15px; margin:10px 0;">
-            <p id="p-desc"></p>
+            <img id="p-img" src="" alt="Foto" style="width:100%; border-radius:15px; margin:10px 0; display:none;">
+            <p id="p-desc">Popis místa.</p>
             <button class="close-btn" onclick="hidePanels()">Zavřít</button>
         </div>
 
-        <div id="double-panel" class="white-box" style="display:none; grid-template-columns: 1fr 1fr; gap:15px;">
-            <div>
+        <div id="double-panel" class="white-box info-overlay double-layout" style="display:none;">
+            <div class="split-card">
                 <h3>Mladoboleslavský Templ</h3>
-                <img src="Templ.jpg" style="width:100%; border-radius:10px;">
-                <p>Městský palác s multimediální expozicí.</p>
+                <img src="Templ.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+                <p>Městský palác s multimediální expozicí o historii města.</p>
             </div>
-            <div>
+            <div class="split-card">
                 <h3>Škoda Muzeum</h3>
-                <img src="muzeum.jpg" style="width:100%; border-radius:10px;">
-                <p>Historie slavné automobilky.</p>
+                <img src="muzeum.jpg" style="width:100%; border-radius:10px; margin-bottom:10px;">
+                <p>Fascinující historie automobilky v moderním pojetí.</p>
             </div>
-            <button class="close-btn" onclick="hidePanels()" style="grid-column: span 2;">Zavřít</button>
+            <button class="close-btn" onclick="hidePanels()" style="grid-column: span 2;">Zavřít oba</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1.2"></script>
 </body>
 </html>
