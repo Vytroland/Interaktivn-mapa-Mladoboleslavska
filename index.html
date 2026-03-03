@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Průvodce Mladoboleslavskem</title>
-    <link rel="stylesheet" href="style.css?v=4.0">
+    <link rel="stylesheet" href="style.css?v=4.5">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
         <div class="side-spacer"></div> 
 
         <div class="white-box map-container">
-            <svg id="mapa-boleslav" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
+            <svg id="mapa-boleslav" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg" overflow="visible">
                 <image href="Mapa.png" x="0" y="0" width="1000" height="1100" />
                 
                 <g class="map-point" data-id="mnichovo">
@@ -60,21 +60,21 @@
 
         <div class="info-column">
             <div id="info-panel" class="white-box info-overlay">
-                <h2 id="p-title">Název</h2>
-                <img id="p-img" src="" style="width:100%; border-radius:15px; margin:10px 0;">
-                <p id="p-desc"></p>
+                <h2 id="p-title">Název místa</h2>
+                <img id="p-img" src="" alt="Foto" style="width:100%; border-radius:15px; margin:10px 0;">
+                <p id="p-desc">Popis se načte po kliknutí.</p>
                 <button class="close-btn" onclick="hidePanels()">Zavřít</button>
             </div>
 
             <div id="double-panel" class="white-box info-overlay">
                 <div style="margin-bottom: 20px;">
                     <h3>Mladoboleslavský Templ</h3>
-                    <img src="Templp.jpg" style="width:100%; border-radius:10px;">
+                    <img src="Templp.jpg" alt="Templ" style="width:100%; border-radius:10px;">
                     <p>Městský palác s multimediální expozicí o historii regionu.</p>
                 </div>
-                <div style="border-top: 1px solid #ddd; padding-top: 10px;">
+                <div style="border-top: 1px solid #ddd; padding-top: 15px;">
                     <h3>Škoda Muzeum</h3>
-                    <img src="muzeum.jpg" style="width:100%; border-radius:10px;">
+                    <img src="muzeum.jpg" alt="Muzeum" style="width:100%; border-radius:10px;">
                     <p>Moderní expozice mapující historii automobilky Škoda Auto.</p>
                 </div>
                 <button class="close-btn" onclick="hidePanels()">Zavřít oba panely</button>
@@ -82,6 +82,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=4.0"></script>
+    <script src="script.js?v=4.5"></script>
 </body>
 </html>
