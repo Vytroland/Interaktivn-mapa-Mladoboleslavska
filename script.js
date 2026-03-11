@@ -26,8 +26,6 @@ document.querySelectorAll('.map-point').forEach(point => {
                 if (data.img) {
                     imgElement.src = data.img;
                     imgElement.style.display = 'block';
-                } else {
-                    imgElement.style.display = 'none';
                 }
                 document.getElementById('info-panel').style.display = 'block';
             }
