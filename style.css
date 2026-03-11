@@ -1,6 +1,5 @@
-/* 1. GLOBÁLNÍ NASTAVENÍ */
 :root {
-    color-scheme: light;
+    color-scheme: light; /* Zabrání přebarvení v Dark Mode */
 }
 
 body {
@@ -14,13 +13,13 @@ body {
     min-height: 100vh;
 }
 
-/* 2. HLAVIČKA - Teď se řadí pod sebe (Nadpis -> Text) */
+/* HLAVIČKA - Panely pod sebou pro PC i Mobil */
 .top-header {
     display: flex;
-    flex-direction: column; /* Vynutí řazení pod sebou */
+    flex-direction: column; 
     gap: 15px;
     padding: 20px;
-    align-items: center; /* Vycentruje bubliny */
+    align-items: center;
     width: 100%;
     box-sizing: border-box;
 }
@@ -32,10 +31,10 @@ body {
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     text-align: center;
-    width: fit-content; /* Bublina se roztáhne jen podle textu */
-    max-width: 90%;    /* Ale na mobilu nepřeteče displej */
-    min-height: auto;  /* Výška se přizpůsobí obsahu */
-    filter: none !important;
+    width: fit-content;
+    max-width: 90%;
+    min-height: auto;
+    filter: none !important; /* Pojistka barev */
 }
 
 .panel h1, .panel p { 
@@ -45,16 +44,14 @@ body {
     line-height: 1.4;
 }
 
-/* 3. HLAVNÍ OBSAH (MAPA) */
 .main-content {
     position: relative;
     width: 100%;
     max-width: 1400px;
     display: flex;
-    flex-direction: column; /* Mapa bude pod bublinami */
+    flex-direction: column;
     align-items: center;
-    padding: 10px 20px 40px 20px;
-    box-sizing: border-box;
+    padding: 10px 20px;
 }
 
 .white-box {
@@ -69,11 +66,11 @@ body {
     max-width: 100%;
 }
 
-/* 4. BODY NA MAPĚ A MODALY */
+/* BODY NA MAPĚ */
 svg { 
     width: 100%; 
     height: auto; 
-    filter: none !important; 
+    filter: none !important; /* Důležité pro barvy na mobilu! */
 }
 
 .map-point { cursor: pointer; }
@@ -115,21 +112,7 @@ svg {
     font-weight: bold;
 }
 
-/* 5. RESPONSIVITA (MOBIL) */
 @media (max-width: 1200px) {
-    .info-overlay { 
-        position: static; 
-        width: 100%; 
-        margin-top: 20px; 
-    }
-}
-
-@media (max-width: 480px) {
-    .panel {
-        padding: 12px 20px;
-        border-radius: 25px;
-    }
-    .panel h1, .panel p {
-        font-size: 1rem; /* Na mobilu text o malinko zmenšíme */
-    }
+    .info-overlay { position: static; width: 100%; margin-top: 20px; }
+    .double-layout { grid-template-columns: 1fr; width: 100%; }
 }
