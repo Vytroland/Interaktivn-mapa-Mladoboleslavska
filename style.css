@@ -1,4 +1,3 @@
-/* Základní vzhled */
 body {
     margin: 0;
     padding: 0;
@@ -10,7 +9,6 @@ body {
     min-height: 100vh;
 }
 
-/* Bubliny v hlavičce - Sjednocené */
 .top-header {
     display: flex;
     gap: 20px;
@@ -31,7 +29,7 @@ body {
     justify-content: center;
     flex: 1;
     max-width: 450px;
-    height: 70px; /* Stejná výška pro obě */
+    height: 70px;
 }
 
 .panel h1, .panel p { 
@@ -40,7 +38,6 @@ body {
     font-weight: bold;
 }
 
-/* Mapa vždy uprostřed */
 .main-content {
     position: relative;
     width: 100%;
@@ -62,7 +59,6 @@ body {
     max-width: 100%;
 }
 
-/* Informační panely - Plovoucí vpravo, nehýbou s mapou */
 .info-overlay {
     position: absolute;
     right: 20px;
@@ -79,28 +75,13 @@ body {
     gap: 20px;
 }
 
-/* Body na mapě a jejich popisky */
 .outer-ring { 
     fill: #27ae60; 
     transition: fill 0.3s ease;
 }
 
 .map-point:hover .outer-ring { 
-    fill: #1e8449; /* Ztmavnutí při najetí */
-}
-
-/* Větší a čitelnější text pod kroužky */
-.point-label {
-    fill: #2c3e50;
-    font-size: 20px; 
-    font-weight: 900;
-    text-anchor: middle;
-    paint-order: stroke;
-    stroke: white; /* Bílý obrys kolem písmen */
-    stroke-width: 5px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    pointer-events: none;
+    fill: #1e8449;
 }
 
 svg { width: 100%; height: auto; }
@@ -119,7 +100,6 @@ svg { width: 100%; height: auto; }
     font-size: 1rem;
 }
 
-/* Úprava pro menší obrazovky */
 @media (max-width: 1200px) {
     .info-overlay { position: static; width: 95%; margin-top: 20px; }
     .main-content { flex-direction: column; align-items: center; }
