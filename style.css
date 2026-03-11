@@ -1,3 +1,8 @@
+/* 1. GLOBÁLNÍ NASTAVENÍ */
+:root {
+    color-scheme: light;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -9,42 +14,47 @@ body {
     min-height: 100vh;
 }
 
+/* 2. HLAVIČKA - Teď se řadí pod sebe (Nadpis -> Text) */
 .top-header {
     display: flex;
-    gap: 20px;
-    padding: 30px;
-    justify-content: center;
+    flex-direction: column; /* Vynutí řazení pod sebou */
+    gap: 15px;
+    padding: 20px;
+    align-items: center; /* Vycentruje bubliny */
     width: 100%;
+    box-sizing: border-box;
 }
 
 .panel {
     background-color: #2980b9;
     color: white;
-    padding: 0 30px;
+    padding: 15px 30px;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    max-width: 450px;
-    height: 70px;
+    width: fit-content; /* Bublina se roztáhne jen podle textu */
+    max-width: 90%;    /* Ale na mobilu nepřeteče displej */
+    min-height: auto;  /* Výška se přizpůsobí obsahu */
+    filter: none !important;
 }
 
 .panel h1, .panel p { 
     margin: 0; 
     font-size: 1.2rem; 
     font-weight: bold;
+    line-height: 1.4;
 }
 
+/* 3. HLAVNÍ OBSAH (MAPA) */
 .main-content {
     position: relative;
     width: 100%;
     max-width: 1400px;
     display: flex;
-    justify-content: center;
-    padding: 20px;
+    flex-direction: column; /* Mapa bude pod bublinami */
+    align-items: center;
+    padding: 10px 20px 40px 20px;
+    box-sizing: border-box;
 }
 
 .white-box {
@@ -57,6 +67,24 @@ body {
 .map-container {
     width: 850px;
     max-width: 100%;
+}
+
+/* 4. BODY NA MAPĚ A MODALY */
+svg { 
+    width: 100%; 
+    height: auto; 
+    filter: none !important; 
+}
+
+.map-point { cursor: pointer; }
+
+.outer-ring { 
+    fill: #27ae60 !important; 
+    transition: fill 0.3s ease;
+}
+
+.map-point:hover .outer-ring { 
+    fill: #1e8449 !important;
 }
 
 .info-overlay {
@@ -75,18 +103,6 @@ body {
     gap: 20px;
 }
 
-.outer-ring { 
-    fill: #27ae60; 
-    transition: fill 0.3s ease;
-}
-
-.map-point:hover .outer-ring { 
-    fill: #1e8449;
-}
-
-svg { width: 100%; height: auto; }
-.map-point { cursor: pointer; }
-
 .close-btn {
     width: 100%;
     background: #c0392b;
@@ -97,10 +113,23 @@ svg { width: 100%; height: auto; }
     cursor: pointer;
     margin-top: 15px;
     font-weight: bold;
-    font-size: 1rem;
 }
 
+/* 5. RESPONSIVITA (MOBIL) */
 @media (max-width: 1200px) {
-    .info-overlay { position: static; width: 95%; margin-top: 20px; }
-    .main-content { flex-direction: column; align-items: center; }
+    .info-overlay { 
+        position: static; 
+        width: 100%; 
+        margin-top: 20px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .panel {
+        padding: 12px 20px;
+        border-radius: 25px;
+    }
+    .panel h1, .panel p {
+        font-size: 1rem; /* Na mobilu text o malinko zmenšíme */
+    }
 }
