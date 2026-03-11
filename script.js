@@ -1,9 +1,8 @@
 const locations = {
-    "mnichovo": { title: "Zámek Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
-    "bela": { title: "Zámek Bělá p. Bezdězem", desc: "Historický zámek s expozicí o historii regionu a papírenství.", img: "bela.jpg" },
-    "michalovice": { title: "Zřícenina hradu Michalovice", desc: "Hrad proslulý svou šikmou věží zvanou Putna.", img: "Putna.jpg" },
-    "loucen": { title: "Zámek Loučeň", desc: "Unikátní zámecký areál s mnoha labyrinty a bludišti.", img: "Loucen.jpg" },
-    "benatky": { title: "Zámek Benátky nad Jizerou", desc: "Místo, kde pobýval Tycho Brahe i Bedřich Smetana.", img: "Benatky.jpg" }
+    "mnichovo": { title: "Mnichovo Hradiště", desc: "Barokní sídlo Valdštejnů s rozsáhlou knihovnou.", img: "Minchovo.jpg" },
+    "bela": { title: "Bělá pod Bezdězem", desc: "Historický zámek s expozicí o historii regionu a papírenství.", img: "bela.jpg" },
+    "michalovice": { title: "Michalovická Putna", desc: "Zřícenina hradu proslulá svou šikmou věží zvanou Putna.", img: "Putna.jpg" },
+    "loucen": { title: "Zámek Loučen", desc: "Unikátní zámecký areál s mnoha labyrinty a bludišti.", img: "Loucen.jpg" }
 };
 
 function hidePanels() {
@@ -17,10 +16,8 @@ document.querySelectorAll('.map-point').forEach(point => {
         hidePanels();
 
         if (id === "boleslav") {
-            // Speciální panel pro MB
             document.getElementById('double-panel').style.display = 'grid';
         } else {
-            // Standardní panel pro ostatní
             const data = locations[id];
             if (data) {
                 document.getElementById('p-title').innerText = data.title;
